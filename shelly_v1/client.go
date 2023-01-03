@@ -5,19 +5,13 @@ import (
 	"fmt"
 	"io"
 	"net/http"
-	"net/url"
 )
 
 func FetchStatus(targetHost string) (status Status, err error) {
 	client := &http.Client{}
 
 	//goland:noinspection HttpUrlsUsage
-	path, err := url.JoinPath(fmt.Sprintf("http://%s", targetHost), "/status")
-	if err != nil {
-		return
-	}
-
-	req, err := http.NewRequest(http.MethodGet, path, nil)
+	req, err := http.NewRequest(http.MethodGet, fmt.Sprintf("http://%s/status", targetHost), nil)
 	if err != nil {
 		return
 	}
