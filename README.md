@@ -23,6 +23,12 @@ Configure `target` and `shelly_type`:
 - `shelly_type` is which generation of shelly you have.
   See https://shelly-api-docs.shelly.cloud/.
 
+## TODO
+
+- goreleaser
+- tests
+- authentication
+
 ## License
 
 This software is licensed [under MIT license](/LICENSE).
