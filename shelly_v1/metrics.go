@@ -14,5 +14,6 @@ func ParseMetrics(status Status, m *shelly_metrics.Metrics) {
 		m.PowerFactor.WithLabelValues(labelValue).Set(emeter.PowerFactor)
 		m.Total.WithLabelValues(labelValue).Add(emeter.Total)
 		m.TotalReturned.WithLabelValues(labelValue).Add(emeter.TotalReturned)
+		m.Voltage.WithLabelValues(labelValue).Add(emeter.Voltage)
 	}
 }

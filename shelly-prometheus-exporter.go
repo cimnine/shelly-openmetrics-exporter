@@ -13,6 +13,7 @@ import (
 
 	"shelly-prometheus-exporter/shelly_metrics"
 	"shelly-prometheus-exporter/shelly_v1"
+	"shelly-prometheus-exporter/shelly_v2"
 )
 
 var addr = flag.String("listen-address", ":54901", "The address to listen on for HTTP requests.")
@@ -45,7 +46,12 @@ func probeHandler(w http.ResponseWriter, req *http.Request) {
 		}
 		shelly_v1.ParseMetrics(data, m)
 	} else if shellyType == "v2" {
-		// TODO v2
+		data, err := shelly_v2.FetchStatus(target)
+		if err != nil {
+			http.Error(w, fmt.Sprintf("error while fetching status: %s", err), http.StatusServiceUnavailable)
+			return
+		}
+		shelly_v2.ParseMetrics(data, m)
 	} else {
 		http.Error(w, fmt.Sprintf("unkown shelly_type '%s'", shellyType), http.StatusBadRequest)
 	}
