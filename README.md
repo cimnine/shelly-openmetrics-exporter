@@ -15,13 +15,9 @@ Authentication is not supported.
 ## Usage
 
 Run this program and point prometheus to it.
-Configure `target` and `shelly_type`:
-
-- `target` is the target shelly.
-  You may use an IP or a domain name.
-  You may configure a port like this `name:port`.
-- `shelly_type` is which generation of shelly you have.
-  See https://shelly-api-docs.shelly.cloud/.
+Use `target` to define which shelly to query.
+You may use an IP or a domain name.
+You may configure a port like this `name:port`.
 
 ## TODO
 

@@ -11,6 +11,7 @@ import (
 	"github.com/prometheus/client_golang/prometheus/collectors"
 	"github.com/prometheus/client_golang/prometheus/promhttp"
 
+	"shelly-prometheus-exporter/shelly_detect"
 	"shelly-prometheus-exporter/shelly_metrics"
 	"shelly-prometheus-exporter/shelly_v1"
 	"shelly-prometheus-exporter/shelly_v2"
@@ -32,28 +33,31 @@ func probeHandler(w http.ResponseWriter, req *http.Request) {
 		http.Error(w, "'target' parameter is missing", http.StatusBadRequest)
 		return
 	}
-	shellyType := req.URL.Query().Get("shelly_type")
-	if target == "" {
-		http.Error(w, "'shelly_type' parameter is missing", http.StatusBadRequest)
+
+	shellyType, err := shelly_detect.DetectVersion(target)
+	if err != nil {
+		http.Error(w, "unable to detect the shelly version", http.StatusInternalServerError)
 		return
 	}
 
-	if shellyType == "v1" {
+	switch shellyType {
+	case shelly_detect.ShellyGeneration1:
 		data, err := shelly_v1.FetchStatus(target)
 		if err != nil {
 			http.Error(w, fmt.Sprintf("error while fetching status: %s", err), http.StatusServiceUnavailable)
 			return
 		}
 		shelly_v1.ParseMetrics(data, m)
-	} else if shellyType == "v2" {
+	case shelly_detect.ShellyGeneration2:
 		data, err := shelly_v2.FetchStatus(target)
 		if err != nil {
 			http.Error(w, fmt.Sprintf("error while fetching status: %s", err), http.StatusServiceUnavailable)
 			return
 		}
 		shelly_v2.ParseMetrics(data, m)
-	} else {
+	default:
 		http.Error(w, fmt.Sprintf("unkown shelly_type '%s'", shellyType), http.StatusBadRequest)
+		return
 	}
 
 	h := promhttp.HandlerFor(reg, promhttp.HandlerOpts{EnableOpenMetrics: true})
