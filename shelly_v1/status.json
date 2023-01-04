@@ -1,0 +1,86 @@
+{
+  "actions_stats": {
+    "skipped": 0
+  },
+  "cfg_changed_cnt": 0,
+  "cloud": {
+    "connected": true,
+    "enabled": true
+  },
+  "ct_calst": 0,
+  "emeter_n": {
+    "current": 0.0,
+    "is_valid": false,
+    "ixsum": 0.67,
+    "mismatch": false
+  },
+  "emeters": [
+    {
+      "current": 0.72,
+      "is_valid": true,
+      "pf": 0.69,
+      "power": 113.63,
+      "total": 191131.6,
+      "total_returned": 0.0,
+      "voltage": 230.09
+    },
+    {
+      "current": 0.26,
+      "is_valid": true,
+      "pf": 0.64,
+      "power": 38.24,
+      "total": 103767.7,
+      "total_returned": 0.0,
+      "voltage": 230.75
+    },
+    {
+      "current": 0.27,
+      "is_valid": true,
+      "pf": 0.5,
+      "power": 30.59,
+      "total": 128226.6,
+      "total_returned": 0.0,
+      "voltage": 230.74
+    }
+  ],
+  "fs_free": 154365,
+  "fs_mounted": true,
+  "fs_size": 233681,
+  "has_update": false,
+  "mac": "111CAB11A11E",
+  "mqtt": {
+    "connected": false
+  },
+  "ram_free": 31884,
+  "ram_total": 49928,
+  "relays": [
+    {
+      "has_timer": false,
+      "is_valid": true,
+      "ison": false,
+      "overpower": false,
+      "source": "input",
+      "timer_duration": 0,
+      "timer_remaining": 0,
+      "timer_started": 0
+    }
+  ],
+  "serial": 2414,
+  "time": "07:32",
+  "total_power": 182.46,
+  "unixtime": 1672813941,
+  "update": {
+    "has_update": false,
+    "new_version": "20221027-110030/v1.12.1-ga9117d3",
+    "old_version": "20221027-110030/v1.12.1-ga9117d3",
+    "status": "idle"
+  },
+  "uptime": 141090,
+  "v_data": 1,
+  "wifi_sta": {
+    "connected": true,
+    "ip": "192.168.1.1",
+    "rssi": -56,
+    "ssid": "Wifi Name"
+  }
+}

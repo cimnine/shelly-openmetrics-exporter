@@ -1,0 +1,148 @@
+{
+  "actions": {
+    "active": false,
+    "names": [
+      "out_on_url",
+      "out_off_url",
+      "over_power_url",
+      "under_power_url",
+      "over_power_url",
+      "under_power_url",
+      "over_power_url",
+      "under_power_url",
+      "over_power_url",
+      "under_power_url",
+      "n_mismatch_url"
+    ]
+  },
+  "allow_cross_origin": false,
+  "ap_roaming": {
+    "enabled": true,
+    "threshold": -55
+  },
+  "build_info": {
+    "build_id": "20221027-110030/v1.12.1-ga9117d3",
+    "build_timestamp": "2022-10-27T11:00:30Z",
+    "build_version": "1.0"
+  },
+  "cf_output": 100,
+  "cloud": {
+    "connected": true,
+    "enabled": true
+  },
+  "coiot": {
+    "enabled": true,
+    "peer": "",
+    "update_period": 15
+  },
+  "debug_enable": false,
+  "device": {
+    "hostname": "shellyem3-111CAB11A11E",
+    "mac": "111CAB11A11E",
+    "num_emeters": 3,
+    "num_meters": 0,
+    "num_outputs": 1,
+    "report_period": 1,
+    "type": "SHEM-3"
+  },
+  "discoverable": false,
+  "eco_mode_enabled": false,
+  "emeter_n": {
+    "mismatch_threshold": 1.0,
+    "range_extender": 1
+  },
+  "emeters": [
+    {
+      "appliance_type": "General",
+      "max_power": 0,
+      "name": "Channel 1",
+      "range_extender": 1
+    },
+    {
+      "appliance_type": "General",
+      "max_power": 0,
+      "name": "Channel 2",
+      "range_extender": 1
+    },
+    {
+      "appliance_type": "General",
+      "max_power": 0,
+      "name": "Channel 3",
+      "range_extender": 1
+    }
+  ],
+  "fw": "20221027-110030/v1.12.1-ga9117d3",
+  "hwinfo": {
+    "batch_id": 0,
+    "hw_revision": "dev-prototype"
+  },
+  "lat": 0.495209,
+  "led_status_disable": false,
+  "lng": 0.71693,
+  "login": {
+    "enabled": false,
+    "unprotected": false,
+    "username": "admin"
+  },
+  "mqtt": {
+    "clean_session": true,
+    "enable": false,
+    "id": "shellyem3-111CAB11A11E",
+    "keep_alive": 60,
+    "max_qos": 0,
+    "reconnect_timeout_max": 60.0,
+    "reconnect_timeout_min": 2.0,
+    "retain": false,
+    "server": "192.168.33.3:1883",
+    "update_period": 30,
+    "user": ""
+  },
+  "name": "shelly-device-name",
+  "pin_code": "",
+  "relays": [
+    {
+      "auto_off": 0.0,
+      "auto_on": 0.0,
+      "default_state": "last",
+      "has_timer": false,
+      "ison": false,
+      "name": null,
+      "schedule": false,
+      "schedule_rules": []
+    }
+  ],
+  "sntp": {
+    "enabled": true,
+    "server": "time.google.com"
+  },
+  "time": "22:30",
+  "timezone": "Europe/Zurich",
+  "tz_dst": false,
+  "tz_dst_auto": true,
+  "tz_utc_offset": 3600,
+  "tzautodetect": true,
+  "unixtime": 1672781440,
+  "wifi_ap": {
+    "enabled": false,
+    "key": "",
+    "ssid": "shellyem3-111CAB11A11E"
+  },
+  "wifi_sta": {
+    "dns": null,
+    "enabled": true,
+    "gw": null,
+    "ip": null,
+    "ipv4_method": "dhcp",
+    "mask": null,
+    "ssid": "Wifi Name 1"
+  },
+  "wifi_sta1": {
+    "dns": null,
+    "enabled": true,
+    "gw": null,
+    "ip": null,
+    "ipv4_method": "dhcp",
+    "mask": null,
+    "ssid": "Wifi Name 2"
+  }
+}

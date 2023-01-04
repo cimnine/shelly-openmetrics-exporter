@@ -1,0 +1,13 @@
+{
+  "app": "Plus2PM",
+  "auth_domain": null,
+  "auth_en": false,
+  "fw_id": "20221206-141957/0.12.0-gafc2404",
+  "gen": 2,
+  "id": "shellyplus2pm-11111CED111",
+  "mac": "11111CED111",
+  "model": "SNSW-102P16EU",
+  "name": "shellyplus2pm-11111CED111",
+  "profile": "switch",
+  "ver": "0.12.0"
+}

@@ -1,0 +1,34 @@
+{
+  "ap": {
+    "enable": false,
+    "is_open": true,
+    "range_extender": {
+      "enable": false
+    },
+    "ssid": "ShellyPlus2PM-11111CED111"
+  },
+  "roam": {
+    "interval": 60,
+    "rssi_thr": -80
+  },
+  "sta": {
+    "enable": true,
+    "gw": null,
+    "ip": null,
+    "ipv4mode": "dhcp",
+    "is_open": false,
+    "nameserver": null,
+    "netmask": null,
+    "ssid": "Wifi 1"
+  },
+  "sta1": {
+    "enable": true,
+    "gw": null,
+    "ip": null,
+    "ipv4mode": "dhcp",
+    "is_open": false,
+    "nameserver": null,
+    "netmask": null,
+    "ssid": "Wifi 2"
+  }
+}

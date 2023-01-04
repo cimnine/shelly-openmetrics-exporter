@@ -1,0 +1,16 @@
+{
+  "available_updates": {},
+  "cfg_rev": 29,
+  "fs_free": 106496,
+  "fs_size": 458752,
+  "kvs_rev": 4,
+  "mac": "111111CED111",
+  "ram_free": 155512,
+  "ram_size": 233464,
+  "restart_required": false,
+  "schedule_rev": 0,
+  "time": "07:36",
+  "unixtime": 1672814164,
+  "uptime": 38783,
+  "webhook_rev": 0
+}

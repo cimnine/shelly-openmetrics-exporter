@@ -1,0 +1,142 @@
+{
+  "ble": {
+    "enable": false,
+    "rpc": {
+      "enable": true
+    }
+  },
+  "cloud": {
+    "enable": true,
+    "server": "shelly-0-eu.shelly.cloud:6022/jrpc"
+  },
+  "input:0": {
+    "factory_reset": true,
+    "id": 0,
+    "invert": false,
+    "name": null,
+    "type": "switch"
+  },
+  "input:1": {
+    "factory_reset": true,
+    "id": 1,
+    "invert": false,
+    "name": null,
+    "type": "switch"
+  },
+  "mqtt": {
+    "client_id": "shellyplus2pm-11111CED111",
+    "enable": false,
+    "rpc_ntf": true,
+    "server": null,
+    "status_ntf": false,
+    "topic_prefix": "shellyplus2pm-11111CED111",
+    "use_client_cert": false,
+    "user": null
+  },
+  "switch:0": {
+    "auto_off": false,
+    "auto_off_delay": 60.0,
+    "auto_on": false,
+    "auto_on_delay": 60.0,
+    "current_limit": 10.0,
+    "id": 0,
+    "in_mode": "detached",
+    "initial_state": "on",
+    "name": "switch1",
+    "power_limit": 700,
+    "voltage_limit": 280
+  },
+  "switch:1": {
+    "auto_off": false,
+    "auto_off_delay": 60.0,
+    "auto_on": false,
+    "auto_on_delay": 60.0,
+    "current_limit": 10.0,
+    "id": 1,
+    "in_mode": "detached",
+    "initial_state": "on",
+    "name": "switch2",
+    "power_limit": 2800,
+    "voltage_limit": 280
+  },
+  "sys": {
+    "cfg_rev": 29,
+    "debug": {
+      "mqtt": {
+        "enable": false
+      },
+      "udp": {
+        "addr": null
+      },
+      "websocket": {
+        "enable": false
+      }
+    },
+    "device": {
+      "addon_type": "sensor",
+      "discoverable": true,
+      "eco_mode": false,
+      "fw_id": "20221206-141957/0.12.0-gafc2404",
+      "mac": "11111CED111",
+      "name": "shellyplus2pm-11111CED111",
+      "profile": "switch"
+    },
+    "location": {
+      "lat": 0.49521,
+      "lon": 0.71693,
+      "tz": "Europe/Zurich"
+    },
+    "rpc_udp": {
+      "dst_addr": null,
+      "listen_port": null
+    },
+    "sntp": {
+      "server": "time.google.com"
+    },
+    "ui_data": {
+      "consumption_types": [
+        "socket",
+        ""
+      ]
+    }
+  },
+  "wifi": {
+    "ap": {
+      "enable": false,
+      "is_open": true,
+      "range_extender": {
+        "enable": false
+      },
+      "ssid": "ShellyPlus2PM-11111CED111"
+    },
+    "roam": {
+      "interval": 60,
+      "rssi_thr": -80
+    },
+    "sta": {
+      "enable": true,
+      "gw": null,
+      "ip": null,
+      "ipv4mode": "dhcp",
+      "is_open": false,
+      "nameserver": null,
+      "netmask": null,
+      "ssid": "Wifi 1"
+    },
+    "sta1": {
+      "enable": true,
+      "gw": null,
+      "ip": null,
+      "ipv4mode": "dhcp",
+      "is_open": false,
+      "nameserver": null,
+      "netmask": null,
+      "ssid": "Wifi 2"
+    }
+  },
+  "ws": {
+    "enable": false,
+    "server": null,
+    "ssl_ca": "ca.pem"
+  }
+}
