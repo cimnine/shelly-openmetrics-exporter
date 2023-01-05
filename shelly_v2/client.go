@@ -47,6 +47,10 @@ func (s *ShellyV2) FetchStatus() error {
 	if err != nil {
 		return err
 	}
+	err = s.getDevicePowerStatus(status)
+	if err != nil {
+		return err
+	}
 
 	s.status = status
 

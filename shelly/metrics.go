@@ -5,30 +5,32 @@ import (
 )
 
 type Metrics struct {
-	Power             *prometheus.GaugeVec
-	PowerLimit        *prometheus.GaugeVec
-	Current           *prometheus.GaugeVec
-	CurrentLimit      *prometheus.GaugeVec
-	Voltage           *prometheus.GaugeVec
-	VoltageLimit      *prometheus.GaugeVec
-	PowerFactor       *prometheus.GaugeVec
-	Total             *prometheus.CounterVec
-	TotalReturned     *prometheus.CounterVec
-	RelativeHumidity  *prometheus.GaugeVec
-	Temperature       *prometheus.GaugeVec
-	TemperatureDevice *prometheus.GaugeVec
-	Voltmeter         *prometheus.GaugeVec
-	RelayOpen         *prometheus.GaugeVec
-	RelayOverpowered  *prometheus.GaugeVec
-	RelayValid        *prometheus.GaugeVec
-	InputState        *prometheus.GaugeVec
-	InputEventCount   *prometheus.CounterVec
-	InputPercent      *prometheus.GaugeVec
-	HasUpdate         *prometheus.GaugeVec
-	CloudEnabled      *prometheus.GaugeVec
-	CloudConnected    *prometheus.GaugeVec
-	WifiConnected     *prometheus.GaugeVec
-	WifiSignal        *prometheus.GaugeVec
+	Power                 *prometheus.GaugeVec
+	PowerLimit            *prometheus.GaugeVec
+	Current               *prometheus.GaugeVec
+	CurrentLimit          *prometheus.GaugeVec
+	Voltage               *prometheus.GaugeVec
+	VoltageLimit          *prometheus.GaugeVec
+	PowerFactor           *prometheus.GaugeVec
+	Total                 *prometheus.CounterVec
+	TotalReturned         *prometheus.CounterVec
+	RelativeHumidity      *prometheus.GaugeVec
+	Temperature           *prometheus.GaugeVec
+	TemperatureDevice     *prometheus.GaugeVec
+	Voltmeter             *prometheus.GaugeVec
+	RelayOpen             *prometheus.GaugeVec
+	RelayOverpowered      *prometheus.GaugeVec
+	RelayValid            *prometheus.GaugeVec
+	InputState            *prometheus.GaugeVec
+	InputEventCount       *prometheus.CounterVec
+	InputPercent          *prometheus.GaugeVec
+	HasUpdate             *prometheus.GaugeVec
+	CloudEnabled          *prometheus.GaugeVec
+	CloudConnected        *prometheus.GaugeVec
+	WifiConnected         *prometheus.GaugeVec
+	WifiSignal            *prometheus.GaugeVec
+	DevicePowerVoltage    *prometheus.GaugeVec
+	DevicePowerPercentage *prometheus.GaugeVec
 }
 
 func NewMetrics(reg *prometheus.Registry) *Metrics {
