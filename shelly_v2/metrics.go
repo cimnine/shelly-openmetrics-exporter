@@ -13,6 +13,7 @@ type Status struct {
 	CloudConfig       *CloudGetConfigResponse
 	VoltmeterStatus   []VoltmeterGetStatusResponse
 	TemperatureStatus []TemperatureGetStatusResponse
+	HumidityStatus    []HumidityGetStatusResponse
 }
 
 func (s *ShellyV2) FillMetrics(m *shelly.Metrics) {

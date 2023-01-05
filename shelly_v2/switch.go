@@ -62,7 +62,7 @@ func (s *ShellyV2) fillSwitchMetrics(m *shelly.Metrics) {
 		m.PowerFactor.WithLabelValues(labels...).Set(shellySwitch.PowerFactor)
 		m.Total.WithLabelValues(labels...).Add(shellySwitch.ActiveEnergy.Total)
 		m.Voltage.WithLabelValues(labels...).Add(shellySwitch.Voltage)
-		m.Temperature.WithLabelValues(labels...).Add(shellySwitch.Temperature.Celsius + shelly.CelsiusInKelvin)
+		m.Temperature.WithLabelValues(labels...).Add(shelly.CelsiusToKelvin(shellySwitch.Temperature.Celsius))
 	}
 	for i, shellySwitch := range s.status.SwitchesConfig {
 		labels := shelly.LineLabels(s.Shelly, "switch", i)

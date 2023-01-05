@@ -1,0 +1,10 @@
+{
+  "id": 0,
+  "battery": {
+    "V": 4.87,
+    "percent": 50
+  },
+  "external": {
+    "present": false
+  }
+}

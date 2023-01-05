@@ -19,3 +19,9 @@ func DeviceLabels(s *Shelly) []string {
 func LineLabels(s *Shelly, kind string, line int) []string {
 	return append(DeviceLabels(s), kind+":"+strconv.Itoa(line))
 }
+
+func CelsiusToKelvin(celsius float64) float64 {
+	return celsius + zeroCelsiusInKelvin
+}
+
+const zeroCelsiusInKelvin = 273.15

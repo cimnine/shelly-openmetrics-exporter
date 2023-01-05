@@ -14,6 +14,7 @@ type Metrics struct {
 	PowerFactor       *prometheus.GaugeVec
 	Total             *prometheus.CounterVec
 	TotalReturned     *prometheus.CounterVec
+	RelativeHumidity  *prometheus.GaugeVec
 	Temperature       *prometheus.GaugeVec
 	TemperatureDevice *prometheus.GaugeVec
 	Voltmeter         *prometheus.GaugeVec
@@ -102,6 +103,13 @@ func NewMetrics(reg *prometheus.Registry) *Metrics {
 			prometheus.GaugeOpts{
 				Name: "shelly_temperature_k",
 				Help: "The current temperature in degrees of kelvin.",
+			},
+			lineLabels,
+		),
+		RelativeHumidity: prometheus.NewGaugeVec(
+			prometheus.GaugeOpts{
+				Name: "shelly_humidity_percent",
+				Help: "The current relative humidity in percent.",
 			},
 			lineLabels,
 		),
@@ -208,6 +216,7 @@ func NewMetrics(reg *prometheus.Registry) *Metrics {
 		m.PowerFactor,
 		m.Total,
 		m.TotalReturned,
+		m.RelativeHumidity,
 		m.Temperature,
 		m.TemperatureDevice,
 		m.Voltmeter,

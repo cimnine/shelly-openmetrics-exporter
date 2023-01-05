@@ -39,6 +39,14 @@ func (s *ShellyV2) FetchStatus() error {
 	if err != nil {
 		return err
 	}
+	err = s.getTemperatureStatus(status)
+	if err != nil {
+		return err
+	}
+	err = s.getHumidityStatus(status)
+	if err != nil {
+		return err
+	}
 
 	s.status = status
 

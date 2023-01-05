@@ -87,7 +87,7 @@ func (s *ShellyV1) readTemperature(m *shelly.Metrics) {
 	}
 
 	labels := shelly.DeviceLabels(s.Shelly)
-	m.TemperatureDevice.WithLabelValues(labels...).Add(s.status.Temperatures.Celsius + shelly.CelsiusInKelvin)
+	m.TemperatureDevice.WithLabelValues(labels...).Add(shelly.CelsiusToKelvin(s.status.Temperatures.Celsius))
 }
 
 func (s *ShellyV1) readEmeters(m *shelly.Metrics) {

@@ -8,5 +8,3 @@ type Actor interface {
 	FetchStatus() error
 	FillMetrics(m *Metrics)
 }
-
-const CelsiusInKelvin = 273.15
