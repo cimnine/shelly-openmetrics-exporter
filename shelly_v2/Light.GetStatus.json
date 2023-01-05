@@ -1,0 +1,8 @@
+{
+  "id": 0,
+  "source": "timer",
+  "output": false,
+  "brightness": 50,
+  "timer_started_at": 1626942399.36,
+  "timer_duration": 60
+}

@@ -31,6 +31,8 @@ type Metrics struct {
 	WifiSignal            *prometheus.GaugeVec
 	DevicePowerVoltage    *prometheus.GaugeVec
 	DevicePowerPercentage *prometheus.GaugeVec
+	LightBrightness       *prometheus.GaugeVec
+	LightState            *prometheus.GaugeVec
 }
 
 func NewMetrics(reg *prometheus.Registry) *Metrics {
@@ -124,7 +126,7 @@ func NewMetrics(reg *prometheus.Registry) *Metrics {
 		),
 		Voltmeter: prometheus.NewGaugeVec(
 			prometheus.GaugeOpts{
-				Name: "shelly_adc_voltage_v",
+				Name: "shelly_voltmeter_v",
 				Help: "The voltage value of the built-in volt meters / ADCs in this instant.",
 			},
 			lineLabels,
@@ -202,7 +204,35 @@ func NewMetrics(reg *prometheus.Registry) *Metrics {
 		WifiSignal: prometheus.NewGaugeVec(
 			prometheus.GaugeOpts{
 				Name: "shelly_wifi_signal",
-				Help: "the signal strength of the wifi",
+				Help: "The signal strength of the wifi in this instant.",
+			},
+			append(deviceLabels, "ssid"),
+		),
+		DevicePowerPercentage: prometheus.NewGaugeVec(
+			prometheus.GaugeOpts{
+				Name: "shelly_device_power_percentage",
+				Help: "The percentage of the device power source in this instant.",
+			},
+			append(deviceLabels, "ssid"),
+		),
+		DevicePowerVoltage: prometheus.NewGaugeVec(
+			prometheus.GaugeOpts{
+				Name: "shelly_device_power_voltage",
+				Help: "The voltage of the device power source in this instant.",
+			},
+			append(deviceLabels, "ssid"),
+		),
+		LightBrightness: prometheus.NewGaugeVec(
+			prometheus.GaugeOpts{
+				Name: "shelly_light_brightness_percentage",
+				Help: "The percentage of the brightness of the light in this instant.",
+			},
+			append(deviceLabels, "ssid"),
+		),
+		LightState: prometheus.NewGaugeVec(
+			prometheus.GaugeOpts{
+				Name: "shelly_light_state",
+				Help: "1 if the light is on, else 0.",
 			},
 			append(deviceLabels, "ssid"),
 		),
@@ -232,6 +262,10 @@ func NewMetrics(reg *prometheus.Registry) *Metrics {
 		m.CloudConnected,
 		m.WifiConnected,
 		m.WifiSignal,
+		m.DevicePowerPercentage,
+		m.DevicePowerVoltage,
+		m.LightBrightness,
+		m.LightState,
 	)
 
 	return m

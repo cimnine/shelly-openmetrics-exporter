@@ -1,0 +1,20 @@
+{
+  "id": 0,
+  "name": null,
+  "initial_state": "match_input",
+  "auto_on": true,
+  "auto_on_delay": 60,
+  "auto_off": true,
+  "auto_off_delay": 60,
+  "default": {
+    "brightness": 100
+  },
+  "night_mode": {
+    "enable": true,
+    "brightness": 15,
+    "active_between": [
+      "21:45",
+      "05:30"
+    ]
+  }
+}

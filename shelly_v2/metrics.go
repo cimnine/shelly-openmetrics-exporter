@@ -15,6 +15,7 @@ type Status struct {
 	TemperatureStatus []TemperatureGetStatusResponse
 	HumidityStatus    []HumidityGetStatusResponse
 	DevicePowerStatus []DevicePowerGetStatusResponse
+	LightStatus       []LightGetStatusResponse
 }
 
 func (s *ShellyV2) FillMetrics(m *shelly.Metrics) {
