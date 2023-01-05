@@ -1,11 +1,13 @@
 {
-  "id": "shellypro4pm-f008d1d8b8b8",
-  "mac": "F008D1D8B8B8",
-  "model": "SPSW-004PE16EU",
+  "app": "Plus2PM",
+  "auth_domain": null,
+  "auth_en": false,
+  "fw_id": "20221206-141957/0.12.0-gafc2404",
   "gen": 2,
-  "fw_id": "20210720-153353/0.6.7-gc36674b",
-  "ver": "0.6.7",
-  "app": "FourPro",
-  "auth_en": true,
-  "auth_domain": "shellypro4pm-f008d1d8b8b8"
+  "id": "shellyplus2pm-11111CED111",
+  "mac": "11111CED111",
+  "model": "SNSW-102P16EU",
+  "name": "shellyplus2pm-11111CED111",
+  "profile": "switch",
+  "ver": "0.12.0"
 }

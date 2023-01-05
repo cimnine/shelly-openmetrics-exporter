@@ -13,6 +13,12 @@ type Shelly struct {
 	Auth         bool   `json:"auth"`
 	AuthEn       bool   `json:"auth_en"`
 	AuthDomain   string `json:"auth_domain"`
-	Longid       int    `json:"longid"`
+	LongID       int    `json:"longid"`
 	Discoverable bool   `json:"discoverable"`
+	Name         string `json:"name"`
+	Profile      string `json:"profile"`
+	NumEmeters   int    `json:"num_emeters"`
+	NumMeters    int    `json:"num_meters"`
+	NumOutputs   int    `json:"num_outputs"`
+	ReportPeriod int    `json:"report_period"`
 }

@@ -1,8 +1,12 @@
 {
-  "type": "SHSW-21",
-  "mac": "5ECF7F1632E8",
-  "auth": true,
-  "fw": "20161223-111304/master@2bc16496",
+  "auth": false,
+  "discoverable": false,
+  "fw": "20221027-110030/v1.12.1-ga9117d3",
   "longid": 1,
-  "discoverable": true
+  "mac": "111CAB11A11E",
+  "num_emeters": 3,
+  "num_meters": 0,
+  "num_outputs": 1,
+  "report_period": 1,
+  "type": "SHEM-3"
 }
