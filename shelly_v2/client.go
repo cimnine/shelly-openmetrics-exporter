@@ -9,40 +9,51 @@ import (
 )
 
 func (s *ShellyV2) FetchStatus() error {
-	status := Status{}
+	status := &Status{}
 
-	for i := 0; true; i++ {
-		statusRes := SwitchGetStatusResponse{}
-		request := JsonRpc2Request{
-			JsonRpcVersion: "2.0",
-			MessageId:      i,
-			Src:            "shelly-prometheus-exporter",
-			Method:         "Switch.GetStatus",
-			Params:         SwitchGetStatusRequest{Id: i},
-		}
-
-		end, err := s.do(request, &statusRes)
-		if end {
-			break
-		}
-		if err != nil {
-			return err
-		}
-
-		status.Switches = append(status.Switches, statusRes)
+	err := s.getSwitchStatus(status)
+	if err != nil {
+		return err
 	}
-	s.status = &status
+	err = s.getSwitchConfig(status)
+	if err != nil {
+		return err
+	}
+	err = s.getInputStatus(status)
+	if err != nil {
+		return err
+	}
+	err = s.getWifiStatus(status)
+	if err != nil {
+		return err
+	}
+	err = s.getCloudStatus(status)
+	if err != nil {
+		return err
+	}
+	err = s.getCloudConfig(status)
+	if err != nil {
+		return err
+	}
+	err = s.getVoltmeterStatus(status)
+	if err != nil {
+		return err
+	}
+
+	s.status = status
 
 	return nil
 }
 
-func (s *ShellyV2) do(request JsonRpc2Request, statusRes *SwitchGetStatusResponse) (end bool, err error) {
-	client := &http.Client{}
+func (s *ShellyV2) do(request JsonRpc2Request, statusRes any) (end bool, err error) {
+	request.MessageID = *s.nextMessageID
 
 	reqPayload, err := json.Marshal(request)
 	if err != nil {
 		return
 	}
+
+	*s.nextMessageID = *s.nextMessageID + 1
 
 	//goland:noinspection HttpUrlsUsage
 	req, err := http.NewRequest(http.MethodPost, fmt.Sprintf("http://%s/rpc", s.TargetHost), bytes.NewBuffer(reqPayload))
@@ -52,7 +63,7 @@ func (s *ShellyV2) do(request JsonRpc2Request, statusRes *SwitchGetStatusRespons
 
 	req.Header.Set("User-Agent", "shelly-prometheus-exporter")
 
-	res, err := client.Do(req)
+	res, err := s.client.Do(req)
 	if err != nil {
 		return
 	}
@@ -71,12 +82,21 @@ func (s *ShellyV2) do(request JsonRpc2Request, statusRes *SwitchGetStatusRespons
 	if err != nil {
 		return
 	}
-	if resPayload.Error.Code == -105 { // Switch ID not found
+	code := resPayload.Error.Code
+	if endLoop(code) {
 		return true, nil
 	}
 	if resPayload.Error.Code != 0 {
-		return false, fmt.Errorf("shelly returned error with code %d: %s", resPayload.Error.Code, resPayload.Error.Message)
+		return true, fmt.Errorf("shelly returned error with code %d: %s", resPayload.Error.Code, resPayload.Error.Message)
 	}
 
 	return false, json.Unmarshal(resPayload.Result, statusRes)
+}
+
+func endLoop(code int) bool {
+	const CodeIdNotFound = -105
+	const CodeHandlerNotFound = 404
+
+	return code == CodeIdNotFound ||
+		code == CodeHandlerNotFound
 }

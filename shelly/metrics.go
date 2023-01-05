@@ -6,19 +6,23 @@ import (
 
 type Metrics struct {
 	Power             *prometheus.GaugeVec
+	PowerLimit        *prometheus.GaugeVec
 	Current           *prometheus.GaugeVec
+	CurrentLimit      *prometheus.GaugeVec
 	Voltage           *prometheus.GaugeVec
+	VoltageLimit      *prometheus.GaugeVec
 	PowerFactor       *prometheus.GaugeVec
 	Total             *prometheus.CounterVec
 	TotalReturned     *prometheus.CounterVec
 	Temperature       *prometheus.GaugeVec
 	TemperatureDevice *prometheus.GaugeVec
-	ADCVoltage        *prometheus.GaugeVec
+	Voltmeter         *prometheus.GaugeVec
 	RelayOpen         *prometheus.GaugeVec
 	RelayOverpowered  *prometheus.GaugeVec
 	RelayValid        *prometheus.GaugeVec
 	InputState        *prometheus.GaugeVec
 	InputEventCount   *prometheus.CounterVec
+	InputPercent      *prometheus.GaugeVec
 	HasUpdate         *prometheus.GaugeVec
 	CloudEnabled      *prometheus.GaugeVec
 	CloudConnected    *prometheus.GaugeVec
@@ -38,6 +42,13 @@ func NewMetrics(reg *prometheus.Registry) *Metrics {
 			},
 			lineLabels,
 		),
+		PowerLimit: prometheus.NewGaugeVec(
+			prometheus.GaugeOpts{
+				Name: "shelly_power_limit_w",
+				Help: "The power limit value in this instant.",
+			},
+			lineLabels,
+		),
 		Current: prometheus.NewGaugeVec(
 			prometheus.GaugeOpts{
 				Name: "shelly_current_a",
@@ -45,10 +56,24 @@ func NewMetrics(reg *prometheus.Registry) *Metrics {
 			},
 			lineLabels,
 		),
+		CurrentLimit: prometheus.NewGaugeVec(
+			prometheus.GaugeOpts{
+				Name: "shelly_current_limit_a",
+				Help: "The current limit value in this instant.",
+			},
+			lineLabels,
+		),
 		Voltage: prometheus.NewGaugeVec(
 			prometheus.GaugeOpts{
 				Name: "shelly_voltage_v",
 				Help: "The voltage value in this instant.",
+			},
+			lineLabels,
+		),
+		VoltageLimit: prometheus.NewGaugeVec(
+			prometheus.GaugeOpts{
+				Name: "shelly_voltage_limit_v",
+				Help: "The voltage limit value in this instant.",
 			},
 			lineLabels,
 		),
@@ -87,10 +112,10 @@ func NewMetrics(reg *prometheus.Registry) *Metrics {
 			},
 			deviceLabels,
 		),
-		ADCVoltage: prometheus.NewGaugeVec(
+		Voltmeter: prometheus.NewGaugeVec(
 			prometheus.GaugeOpts{
 				Name: "shelly_adc_voltage_v",
-				Help: "The voltage value of the built-in ADCs in this instant.",
+				Help: "The voltage value of the built-in volt meters / ADCs in this instant.",
 			},
 			lineLabels,
 		),
@@ -118,7 +143,7 @@ func NewMetrics(reg *prometheus.Registry) *Metrics {
 		InputState: prometheus.NewGaugeVec(
 			prometheus.GaugeOpts{
 				Name: "shelly_input_state",
-				Help: "The input value in this instant.",
+				Help: "1 if the input state is on, else 0.",
 			},
 			lineLabels,
 		),
@@ -126,6 +151,13 @@ func NewMetrics(reg *prometheus.Registry) *Metrics {
 			prometheus.CounterOpts{
 				Name: "shelly_input_event_count",
 				Help: "The current value of the event_cnt counter.",
+			},
+			lineLabels,
+		),
+		InputPercent: prometheus.NewGaugeVec(
+			prometheus.GaugeOpts{
+				Name: "shelly_input_percent",
+				Help: "The input percent value in this instant.",
 			},
 			lineLabels,
 		),
@@ -168,14 +200,17 @@ func NewMetrics(reg *prometheus.Registry) *Metrics {
 
 	reg.MustRegister(
 		m.Power,
+		m.PowerLimit,
 		m.Current,
+		m.CurrentLimit,
 		m.Voltage,
+		m.VoltageLimit,
 		m.PowerFactor,
 		m.Total,
 		m.TotalReturned,
 		m.Temperature,
 		m.TemperatureDevice,
-		m.ADCVoltage,
+		m.Voltmeter,
 		m.RelayOpen,
 		m.RelayOverpowered,
 		m.RelayValid,

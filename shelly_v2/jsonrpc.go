@@ -6,7 +6,7 @@ import (
 
 type JsonRpc2Request struct {
 	JsonRpcVersion string      `json:"jsonrpc"`
-	MessageId      int         `json:"id"`
+	MessageID      int         `json:"id"`
 	Src            string      `json:"src"`
 	Method         string      `json:"method"`
 	Params         interface{} `json:"params"`

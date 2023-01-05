@@ -1,0 +1,4 @@
+{
+  "enable": true,
+  "server": "shelly-0-eu.shelly.cloud:6022/jrpc"
+}

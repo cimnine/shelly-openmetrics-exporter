@@ -16,6 +16,6 @@ func DeviceLabels(s *Shelly) []string {
 	return []string{s.TargetHost}
 }
 
-func LineLabels(s *Shelly, line int) []string {
-	return append(DeviceLabels(s), strconv.Itoa(line))
+func LineLabels(s *Shelly, kind string, line int) []string {
+	return append(DeviceLabels(s), kind+":"+strconv.Itoa(line))
 }

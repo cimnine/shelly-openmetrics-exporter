@@ -5,30 +5,20 @@ import (
 )
 
 type Status struct {
-	Switches []SwitchGetStatusResponse
+	SwitchesStatus    []SwitchGetStatusResponse
+	SwitchesConfig    []SwitchGetConfigResponse
+	InputStatus       []InputGetStatusResponse
+	WifiStatus        *WifiGetStatusResponse
+	CloudStatus       *CloudGetStatusResponse
+	CloudConfig       *CloudGetConfigResponse
+	VoltmeterStatus   []VoltmeterGetStatusResponse
+	TemperatureStatus []TemperatureGetStatusResponse
 }
 
 func (s *ShellyV2) FillMetrics(m *shelly.Metrics) {
-	if s.status.Switches == nil {
-		return
-	}
-
-	s.readSwitchStatus(m)
-}
-
-func (s *ShellyV2) readSwitchStatus(m *shelly.Metrics) {
-	if s.status.Switches == nil {
-		return
-	}
-
-	for i, shellySwitch := range s.status.Switches {
-		labels := shelly.LineLabels(s.Shelly, i)
-
-		m.Current.WithLabelValues(labels...).Set(shellySwitch.Current)
-		m.Power.WithLabelValues(labels...).Set(shellySwitch.Power)
-		m.PowerFactor.WithLabelValues(labels...).Set(shellySwitch.PowerFactor)
-		m.Total.WithLabelValues(labels...).Add(shellySwitch.ActiveEnergy.Total)
-		m.Voltage.WithLabelValues(labels...).Add(shellySwitch.Voltage)
-		m.Temperature.WithLabelValues(labels...).Add(shellySwitch.Temperature.Celsius + 273.15)
-	}
+	s.fillSwitchMetrics(m)
+	s.fillInputMetrics(m)
+	s.fillWifiMetrics(m)
+	s.fillCloudMetrics(m)
+	s.fillVoltmeterMetrics(m)
 }
