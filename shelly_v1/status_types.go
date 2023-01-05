@@ -55,28 +55,43 @@ type ActionStats struct {
 	Skipped int `json:"skipped"`
 }
 
+type Temperature struct {
+	Celsius    float64 `json:"tC"`
+	Fahrenheit float64 `json:"tF"`
+	IsValid    bool    `json:"is_valid"`
+}
+
+type ADC struct {
+	Voltage float64 `json:"voltage"`
+}
+
 type Status struct {
-	ActionsStats  ActionStats  `json:"actions_stats"`
-	CfgChangedCnt int          `json:"cfg_changed_cnt"`
-	Cloud         CloudStatus  `json:"cloud"`
-	CtCalst       int          `json:"ct_calst"`
-	EmeterN       EmeterN      `json:"emeter_n"`
-	Emeters       []Emeter     `json:"emeters"`
-	FsFree        int          `json:"fs_free"`
-	FsMounted     bool         `json:"fs_mounted"`
-	FsSize        int          `json:"fs_size"`
-	HasUpdate     bool         `json:"has_update"`
-	Mac           string       `json:"mac"`
-	Mqtt          MQTTStatus   `json:"mqtt"`
-	RamFree       int          `json:"ram_free"`
-	RamTotal      int          `json:"ram_total"`
-	Relays        []Relay      `json:"relays"`
-	Serial        int          `json:"serial"`
-	Time          string       `json:"time"`
-	TotalPower    float64      `json:"total_power"`
-	Unixtime      int          `json:"unixtime"`
-	Update        UpdateStatus `json:"update"`
-	Uptime        int          `json:"uptime"`
-	VData         int          `json:"v_data"`
-	WifiSta       WifiStatus   `json:"wifi_sta"`
+	ActionsStats      ActionStats  `json:"actions_stats"`
+	ADCs              []ADC        `json:"adcs"`
+	CfgChangedCnt     int          `json:"cfg_changed_cnt"`
+	Cloud             CloudStatus  `json:"cloud"`
+	CtCalst           int          `json:"ct_calst"`
+	EmeterN           *EmeterN     `json:"emeter_n"`
+	Emeters           []Emeter     `json:"emeters"`
+	FsFree            int          `json:"fs_free"`
+	FsMounted         bool         `json:"fs_mounted"`
+	FsSize            int          `json:"fs_size"`
+	HasUpdate         bool         `json:"has_update"`
+	Mac               string       `json:"mac"`
+	Mqtt              MQTTStatus   `json:"mqtt"`
+	RamFree           int          `json:"ram_free"`
+	RamTotal          int          `json:"ram_total"`
+	Relays            []Relay      `json:"relays"`
+	Serial            int          `json:"serial"`
+	Time              string       `json:"time"`
+	TotalPower        float64      `json:"total_power"`
+	Temperature       float64      `json:"temperature"`
+	Overtemperature   bool         `json:"overtemperature"`
+	Temperatures      *Temperature `json:"tmp"`
+	TemperatureStatus string       `json:"temperature_status"`
+	Unixtime          int          `json:"unixtime"`
+	Update            UpdateStatus `json:"update"`
+	Uptime            int          `json:"uptime"`
+	VData             int          `json:"v_data"`
+	WifiSta           WifiStatus   `json:"wifi_sta"`
 }

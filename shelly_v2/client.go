@@ -8,7 +8,9 @@ import (
 	"net/http"
 )
 
-func FetchStatus(targetHost string) (status Status, err error) {
+func (s *ShellyV2) FetchStatus() error {
+	status := Status{}
+
 	for i := 0; true; i++ {
 		statusRes := SwitchGetStatusResponse{}
 		request := JsonRpc2Request{
@@ -19,22 +21,22 @@ func FetchStatus(targetHost string) (status Status, err error) {
 			Params:         SwitchGetStatusRequest{Id: i},
 		}
 
-		end, err2 := do(targetHost, request, &statusRes)
-		err = err2
+		end, err := s.do(request, &statusRes)
 		if end {
 			break
 		}
 		if err != nil {
-			return
+			return err
 		}
 
 		status.Switches = append(status.Switches, statusRes)
 	}
+	s.status = &status
 
-	return
+	return nil
 }
 
-func do(targetHost string, request JsonRpc2Request, statusRes *SwitchGetStatusResponse) (end bool, err error) {
+func (s *ShellyV2) do(request JsonRpc2Request, statusRes *SwitchGetStatusResponse) (end bool, err error) {
 	client := &http.Client{}
 
 	reqPayload, err := json.Marshal(request)
@@ -43,7 +45,7 @@ func do(targetHost string, request JsonRpc2Request, statusRes *SwitchGetStatusRe
 	}
 
 	//goland:noinspection HttpUrlsUsage
-	req, err := http.NewRequest(http.MethodPost, fmt.Sprintf("http://%s/rpc", targetHost), bytes.NewBuffer(reqPayload))
+	req, err := http.NewRequest(http.MethodPost, fmt.Sprintf("http://%s/rpc", s.targetHost), bytes.NewBuffer(reqPayload))
 	if err != nil {
 		return
 	}

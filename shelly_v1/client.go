@@ -7,32 +7,33 @@ import (
 	"net/http"
 )
 
-func FetchStatus(targetHost string) (status Status, err error) {
+func (s *ShellyV1) FetchStatus() error {
 	client := &http.Client{}
 
 	//goland:noinspection HttpUrlsUsage
-	req, err := http.NewRequest(http.MethodGet, fmt.Sprintf("http://%s/status", targetHost), nil)
+	req, err := http.NewRequest(http.MethodGet, fmt.Sprintf("http://%s/status", s.targetHost), nil)
 	if err != nil {
-		return
+		return err
 	}
 
 	req.Header.Set("User-Agent", "shelly-prometheus-exporter")
 
 	res, err := client.Do(req)
 	if err != nil {
-		return
+		return err
 	}
 
 	if res.Body == nil {
-		err = fmt.Errorf("the response body was nil")
-		return
+		return fmt.Errorf("the response body was nil")
 	}
 
 	body, err := io.ReadAll(res.Body)
 	if err != nil {
-		return
+		return err
 	}
 
-	err = json.Unmarshal(body, &status)
-	return
+	s.status = &Status{}
+	err = json.Unmarshal(body, s.status)
+
+	return nil
 }

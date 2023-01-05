@@ -24,5 +24,5 @@ type SwitchGetStatusResponse struct {
 	Voltage      float64       `json:"voltage"`
 	Current      float64       `json:"current"`
 	ActiveEnergy EnergyCounter `json:"aenergy"`
-	Temperature  Temperature   `json:"temperature"`
+	Temperature  *Temperature  `json:"temperature"`
 }

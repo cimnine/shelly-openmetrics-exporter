@@ -68,6 +68,14 @@
   "serial": 2414,
   "time": "07:32",
   "total_power": 182.46,
+  "temperature": 29.35,
+  "overtemperature": false,
+  "tmp": {
+    "tC": 29.35,
+    "tF": 84.83,
+    "is_valid": true
+  },
+  "temperature_status":"Normal",
   "unixtime": 1672813941,
   "update": {
     "has_update": false,

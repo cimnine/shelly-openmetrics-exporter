@@ -19,6 +19,11 @@ import (
 
 var addr = flag.String("listen-address", ":54901", "The address to listen on for HTTP requests.")
 
+type Shelly interface {
+	FetchStatus() error
+	FillMetrics(m *shelly_metrics.Metrics)
+}
+
 func probeHandler(w http.ResponseWriter, req *http.Request) {
 	reg := prometheus.NewPedanticRegistry()
 
@@ -40,25 +45,23 @@ func probeHandler(w http.ResponseWriter, req *http.Request) {
 		return
 	}
 
+	var shelly Shelly
 	switch shellyType {
 	case shelly_detect.ShellyGeneration1:
-		data, err := shelly_v1.FetchStatus(target)
-		if err != nil {
-			http.Error(w, fmt.Sprintf("error while fetching status: %s", err), http.StatusServiceUnavailable)
-			return
-		}
-		shelly_v1.ParseMetrics(data, m)
+		shelly = shelly_v1.New(target)
 	case shelly_detect.ShellyGeneration2:
-		data, err := shelly_v2.FetchStatus(target)
-		if err != nil {
-			http.Error(w, fmt.Sprintf("error while fetching status: %s", err), http.StatusServiceUnavailable)
-			return
-		}
-		shelly_v2.ParseMetrics(data, m)
+		shelly = shelly_v2.New(target)
 	default:
-		http.Error(w, fmt.Sprintf("unkown shelly_type '%s'", shellyType), http.StatusBadRequest)
+		http.Error(w, fmt.Sprintf("unkown shelly generation '%d'", shellyType), http.StatusBadRequest)
 		return
 	}
+
+	err = shelly.FetchStatus()
+	if err != nil {
+		http.Error(w, fmt.Sprintf("error while fetching status: %s", err), http.StatusServiceUnavailable)
+		return
+	}
+	shelly.FillMetrics(m)
 
 	h := promhttp.HandlerFor(reg, promhttp.HandlerOpts{EnableOpenMetrics: true})
 	h.ServeHTTP(w, req)

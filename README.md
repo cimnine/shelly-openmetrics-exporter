@@ -6,7 +6,7 @@ It's `/probe` and `/metrics` endpoint report in OpenTracing format.
 
 ## Features
 
-Use this tool to fetch power readings from your shellys via Prometheus (or any OpenTracing compatible agent).
+Use this tool to fetch power readings from your Shellys via Prometheus (or any OpenTracing compatible agent).
 It supports multiple power lines (like they are available on `Shelly 3EM` or `Shelly Plus 2PM`).
 
 This exporter is compatible with the _First Generation Shelly Devices API_ and the _Second Generation Shelly Devices API_.
@@ -21,9 +21,11 @@ You may configure a port like this `name:port`.
 
 ## TODO
 
-- goreleaser
-- tests
-- authentication
+- [x] detect shelly generation
+- [x] temperature
+- [ ] goreleaser
+- [ ] tests
+- [ ] authentication
 
 ## License
 

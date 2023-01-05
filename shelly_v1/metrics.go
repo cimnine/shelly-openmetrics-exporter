@@ -6,14 +6,32 @@ import (
 	"shelly-prometheus-exporter/shelly_metrics"
 )
 
-func ParseMetrics(status Status, m *shelly_metrics.Metrics) {
-	for i, emeter := range status.Emeters {
-		labelValue := strconv.Itoa(i)
-		m.Current.WithLabelValues(labelValue).Set(emeter.Current)
-		m.Power.WithLabelValues(labelValue).Set(emeter.Power)
-		m.PowerFactor.WithLabelValues(labelValue).Set(emeter.PowerFactor)
-		m.Total.WithLabelValues(labelValue).Add(emeter.Total)
-		m.TotalReturned.WithLabelValues(labelValue).Add(emeter.TotalReturned)
-		m.Voltage.WithLabelValues(labelValue).Add(emeter.Voltage)
+func (s *ShellyV1) FillMetrics(m *shelly_metrics.Metrics) {
+	s.readEmeters(m)
+	s.readTemperature(m)
+}
+
+func (s *ShellyV1) readTemperature(m *shelly_metrics.Metrics) {
+	if s.status.Temperatures == nil {
+		return
+	}
+
+	m.TemperatureDevice.WithLabelValues(s.targetHost).Add(s.status.Temperatures.Celsius)
+}
+
+func (s *ShellyV1) readEmeters(m *shelly_metrics.Metrics) {
+	if s.status.Emeters == nil {
+		return
+	}
+
+	for i, emeter := range s.status.Emeters {
+		line := strconv.Itoa(i)
+
+		m.Current.WithLabelValues(s.targetHost, line).Set(emeter.Current)
+		m.Power.WithLabelValues(s.targetHost, line).Set(emeter.Power)
+		m.PowerFactor.WithLabelValues(s.targetHost, line).Set(emeter.PowerFactor)
+		m.Total.WithLabelValues(s.targetHost, line).Add(emeter.Total)
+		m.TotalReturned.WithLabelValues(s.targetHost, line).Add(emeter.TotalReturned)
+		m.Voltage.WithLabelValues(s.targetHost, line).Add(emeter.Voltage)
 	}
 }

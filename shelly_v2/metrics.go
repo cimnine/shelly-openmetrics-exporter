@@ -10,14 +10,22 @@ type Status struct {
 	Switches []SwitchGetStatusResponse
 }
 
-func ParseMetrics(status Status, m *shelly_metrics.Metrics) {
-	for i, shellySwitch := range status.Switches {
-		labelValue := strconv.Itoa(i)
-
-		m.Current.WithLabelValues(labelValue).Set(shellySwitch.Current)
-		m.Power.WithLabelValues(labelValue).Set(shellySwitch.Power)
-		m.PowerFactor.WithLabelValues(labelValue).Set(shellySwitch.PowerFactor)
-		m.Total.WithLabelValues(labelValue).Add(shellySwitch.ActiveEnergy.Total)
-		m.Voltage.WithLabelValues(labelValue).Add(shellySwitch.Voltage)
+func (s *ShellyV2) FillMetrics(m *shelly_metrics.Metrics) {
+	if s.status.Switches == nil {
+		return
 	}
+
+	for i, shellySwitch := range s.status.Switches {
+		line := strconv.Itoa(i)
+		s.readSwitchStatus(m, line, shellySwitch)
+	}
+}
+
+func (s *ShellyV2) readSwitchStatus(m *shelly_metrics.Metrics, line string, shellySwitch SwitchGetStatusResponse) {
+	m.Current.WithLabelValues(s.targetHost, line).Set(shellySwitch.Current)
+	m.Power.WithLabelValues(s.targetHost, line).Set(shellySwitch.Power)
+	m.PowerFactor.WithLabelValues(s.targetHost, line).Set(shellySwitch.PowerFactor)
+	m.Total.WithLabelValues(s.targetHost, line).Add(shellySwitch.ActiveEnergy.Total)
+	m.Voltage.WithLabelValues(s.targetHost, line).Add(shellySwitch.Voltage)
+	m.Temperature.WithLabelValues(s.targetHost, line).Add(shellySwitch.Temperature.Celsius + 273.15)
 }
