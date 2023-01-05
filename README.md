@@ -25,7 +25,7 @@ You may configure a port like this `name:port`.
 - [x] temperature
 - [ ] goreleaser
 - [ ] tests
-- [ ] authentication
+- [x] authentication
 
 ## License
 

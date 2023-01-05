@@ -16,7 +16,10 @@ func (s *ShellyV1) FetchStatus() error {
 		return err
 	}
 
-	req.Header.Set("User-Agent", "shelly-prometheus-exporter")
+	req.Header.Set("User-Agent", s.UserAgent)
+	if s.Username != "" && s.Password != "" {
+		req.SetBasicAuth(s.Username, s.Password)
+	}
 
 	res, err := client.Do(req)
 	if err != nil {

@@ -19,6 +19,8 @@ import (
 
 var addr = flag.String("listen-address", ":54901", "The address to listen on for HTTP requests.")
 
+const userAgent = "shelly-prometheus-exporter"
+
 func probeHandler(w http.ResponseWriter, req *http.Request) {
 	reg := prometheus.NewPedanticRegistry()
 
@@ -33,6 +35,8 @@ func probeHandler(w http.ResponseWriter, req *http.Request) {
 		http.Error(w, "'target' parameter is missing", http.StatusBadRequest)
 		return
 	}
+	username := req.URL.Query().Get("username")
+	password := req.URL.Query().Get("password")
 
 	shellyType, err := shelly_detect.DetectVersion(target)
 	if err != nil {
@@ -40,12 +44,12 @@ func probeHandler(w http.ResponseWriter, req *http.Request) {
 		return
 	}
 
-	var s shelly.Actor
+	var s shelly.Device
 	switch shellyType {
 	case shelly_detect.ShellyGeneration1:
-		s = shelly_v1.New(target)
+		s = shelly_v1.New(target, userAgent, username, password)
 	case shelly_detect.ShellyGeneration2:
-		s = shelly_v2.New(target)
+		s = shelly_v2.New(target, userAgent, password)
 	default:
 		http.Error(w, fmt.Sprintf("unkown shelly generation '%d'", shellyType), http.StatusBadRequest)
 		return

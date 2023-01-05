@@ -9,8 +9,13 @@ type ShellyV1 struct {
 	status *Status
 }
 
-func New(targetHost string) *ShellyV1 {
+func New(targetHost, userAgent, username, password string) *ShellyV1 {
 	return &ShellyV1{
-		Shelly: &shelly.Shelly{TargetHost: targetHost},
+		Shelly: &shelly.Shelly{
+			TargetHost: targetHost,
+			UserAgent:  userAgent,
+			Username:   username,
+			Password:   password,
+		},
 	}
 }

@@ -2,9 +2,12 @@ package shelly
 
 type Shelly struct {
 	TargetHost string
+	UserAgent  string
+	Username   string
+	Password   string
 }
 
-type Actor interface {
+type Device interface {
 	FetchStatus() error
 	FillMetrics(m *Metrics)
 }

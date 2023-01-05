@@ -6,6 +6,8 @@ import (
 	"fmt"
 	"io"
 	"net/http"
+
+	dac "github.com/ndecker/go-http-digest-auth-client"
 )
 
 func (s *ShellyV2) FetchStatus() error {
@@ -66,24 +68,7 @@ func (s *ShellyV2) FetchStatus() error {
 }
 
 func (s *ShellyV2) do(request JsonRpc2Request, statusRes any) (end bool, err error) {
-	request.MessageID = *s.nextMessageID
-
-	reqPayload, err := json.Marshal(request)
-	if err != nil {
-		return
-	}
-
-	*s.nextMessageID = *s.nextMessageID + 1
-
-	//goland:noinspection HttpUrlsUsage
-	req, err := http.NewRequest(http.MethodPost, fmt.Sprintf("http://%s/rpc", s.TargetHost), bytes.NewBuffer(reqPayload))
-	if err != nil {
-		return
-	}
-
-	req.Header.Set("User-Agent", "shelly-prometheus-exporter")
-
-	res, err := s.client.Do(req)
+	res, err := s.sendRequest(request, err)
 	if err != nil {
 		return
 	}
@@ -111,6 +96,56 @@ func (s *ShellyV2) do(request JsonRpc2Request, statusRes any) (end bool, err err
 	}
 
 	return false, json.Unmarshal(resPayload.Result, statusRes)
+}
+
+func (s *ShellyV2) sendRequest(request JsonRpc2Request, err error) (*http.Response, error) {
+	req, err := s.prepareHttpRequest(request)
+	if err != nil {
+		return nil, err
+	}
+
+	var res *http.Response
+	if s.Username != "" && s.Password != "" {
+		t := dac.NewTransport(s.Username, s.Password)
+		t.Client = s.client
+		res, err = t.RoundTrip(req)
+	} else {
+		res, err = s.client.Do(req)
+	}
+
+	if err != nil {
+		return nil, err
+	}
+
+	if res.StatusCode != http.StatusOK {
+		return nil, fmt.Errorf(
+			"the shelly '%s' returned with an http status of %d, whereas only 200 was expected",
+			s.TargetHost,
+			res.StatusCode,
+		)
+	}
+
+	return res, nil
+}
+
+func (s *ShellyV2) prepareHttpRequest(request JsonRpc2Request) (*http.Request, error) {
+	request.MessageID = *s.nextMessageID
+
+	reqPayload, err := json.Marshal(request)
+	if err != nil {
+		return nil, err
+	}
+
+	*s.nextMessageID = *s.nextMessageID + 1
+
+	//goland:noinspection HttpUrlsUsage
+	req, err := http.NewRequest(http.MethodPost, fmt.Sprintf("http://%s/rpc", s.TargetHost), bytes.NewBuffer(reqPayload))
+	if err != nil {
+		return nil, err
+	}
+
+	req.Header.Set("User-Agent", s.UserAgent)
+	return req, nil
 }
 
 func endLoop(code int) bool {

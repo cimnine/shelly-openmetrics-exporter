@@ -13,10 +13,15 @@ type ShellyV2 struct {
 	client        *http.Client
 }
 
-func New(targetHost string) *ShellyV2 {
+func New(targetHost, userAgent, password string) *ShellyV2 {
 	initialMessageId := 0
 	return &ShellyV2{
-		Shelly:        &shelly.Shelly{TargetHost: targetHost},
+		Shelly: &shelly.Shelly{
+			TargetHost: targetHost,
+			UserAgent:  userAgent,
+			Username:   "admin", // must be admin, per documentation
+			Password:   password,
+		},
 		nextMessageID: &initialMessageId,
 		client:        &http.Client{},
 	}
