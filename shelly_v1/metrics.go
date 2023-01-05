@@ -10,6 +10,38 @@ func (s *ShellyV1) FillMetrics(m *shelly.Metrics) {
 	s.readAdcs(m)
 	s.readRelays(m)
 	s.readInputs(m)
+	s.readUpdate(m)
+	s.readCloud(m)
+	s.readWifi(m)
+}
+
+func (s *ShellyV1) readWifi(m *shelly.Metrics) {
+	if s.status.WifiSta == nil {
+		return
+	}
+
+	labels := append(shelly.DeviceLabels(s.Shelly), s.status.WifiSta.Ssid)
+	m.WifiConnected.WithLabelValues(labels...).Set(shelly.BoolToFloat(s.status.WifiSta.Connected))
+	m.WifiSignal.WithLabelValues(labels...).Set(float64(s.status.WifiSta.Rssi))
+}
+
+func (s *ShellyV1) readCloud(m *shelly.Metrics) {
+	if s.status.Cloud == nil {
+		return
+	}
+
+	labels := shelly.DeviceLabels(s.Shelly)
+	m.CloudEnabled.WithLabelValues(labels...).Set(shelly.BoolToFloat(s.status.Cloud.Enabled))
+	m.CloudConnected.WithLabelValues(labels...).Set(shelly.BoolToFloat(s.status.Cloud.Connected))
+}
+
+func (s *ShellyV1) readUpdate(m *shelly.Metrics) {
+	if s.status.Update == nil {
+		return
+	}
+
+	labels := shelly.DeviceLabels(s.Shelly)
+	m.HasUpdate.WithLabelValues(labels...).Set(shelly.BoolToFloat(s.status.HasUpdate))
 }
 
 func (s *ShellyV1) readInputs(m *shelly.Metrics) {
