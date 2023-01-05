@@ -9,6 +9,19 @@ import (
 func (s *ShellyV1) FillMetrics(m *shelly_metrics.Metrics) {
 	s.readEmeters(m)
 	s.readTemperature(m)
+	s.readAdcs(m)
+}
+
+func (s *ShellyV1) readAdcs(m *shelly_metrics.Metrics) {
+	if s.status.ADCs == nil {
+		return
+	}
+
+	for i, adc := range s.status.ADCs {
+		line := strconv.Itoa(i)
+
+		m.Current.WithLabelValues(s.targetHost, line).Set(adc.Voltage)
+	}
 }
 
 func (s *ShellyV1) readTemperature(m *shelly_metrics.Metrics) {

@@ -13,6 +13,7 @@ type Metrics struct {
 	TotalReturned     *prometheus.CounterVec
 	Temperature       *prometheus.GaugeVec
 	TemperatureDevice *prometheus.GaugeVec
+	ADCVoltage        *prometheus.GaugeVec
 }
 
 func NewMetrics(reg *prometheus.Registry) *Metrics {
@@ -74,6 +75,13 @@ func NewMetrics(reg *prometheus.Registry) *Metrics {
 			},
 			[]string{"target"},
 		),
+		ADCVoltage: prometheus.NewGaugeVec(
+			prometheus.GaugeOpts{
+				Name: "shelly_adc_voltage_v",
+				Help: "The voltage value of the built-in ADCs in this instant.",
+			},
+			lineLabels,
+		),
 	}
 
 	reg.MustRegister(
@@ -85,6 +93,7 @@ func NewMetrics(reg *prometheus.Registry) *Metrics {
 		m.TotalReturned,
 		m.Temperature,
 		m.TemperatureDevice,
+		m.ADCVoltage,
 	)
 
 	return m
