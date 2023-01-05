@@ -51,6 +51,14 @@ func (s *ShellyV2) FetchStatus() error {
 	if err != nil {
 		return err
 	}
+	err = s.getCoverStatus(status)
+	if err != nil {
+		return err
+	}
+	err = s.getCoverConfig(status)
+	if err != nil {
+		return err
+	}
 
 	s.status = status
 

@@ -33,6 +33,7 @@ type Metrics struct {
 	DevicePowerPercentage *prometheus.GaugeVec
 	LightBrightness       *prometheus.GaugeVec
 	LightState            *prometheus.GaugeVec
+	CoverPosition         *prometheus.GaugeVec
 }
 
 func NewMetrics(reg *prometheus.Registry) *Metrics {
@@ -175,7 +176,7 @@ func NewMetrics(reg *prometheus.Registry) *Metrics {
 		),
 		HasUpdate: prometheus.NewGaugeVec(
 			prometheus.GaugeOpts{
-				Name: "shelly_has_update",
+				Name: "shelly_update_state",
 				Help: "1 if the shelly can be updated, else 0.",
 			},
 			deviceLabels,
@@ -203,28 +204,28 @@ func NewMetrics(reg *prometheus.Registry) *Metrics {
 		),
 		WifiSignal: prometheus.NewGaugeVec(
 			prometheus.GaugeOpts{
-				Name: "shelly_wifi_signal",
+				Name: "shelly_wifi_signal_db",
 				Help: "The signal strength of the wifi in this instant.",
 			},
 			append(deviceLabels, "ssid"),
 		),
 		DevicePowerPercentage: prometheus.NewGaugeVec(
 			prometheus.GaugeOpts{
-				Name: "shelly_device_power_percentage",
+				Name: "shelly_device_power_percent",
 				Help: "The percentage of the device power source in this instant.",
 			},
 			append(deviceLabels, "ssid"),
 		),
 		DevicePowerVoltage: prometheus.NewGaugeVec(
 			prometheus.GaugeOpts{
-				Name: "shelly_device_power_voltage",
+				Name: "shelly_device_power_v",
 				Help: "The voltage of the device power source in this instant.",
 			},
 			append(deviceLabels, "ssid"),
 		),
 		LightBrightness: prometheus.NewGaugeVec(
 			prometheus.GaugeOpts{
-				Name: "shelly_light_brightness_percentage",
+				Name: "shelly_light_brightness_percent",
 				Help: "The percentage of the brightness of the light in this instant.",
 			},
 			append(deviceLabels, "ssid"),
@@ -233,6 +234,13 @@ func NewMetrics(reg *prometheus.Registry) *Metrics {
 			prometheus.GaugeOpts{
 				Name: "shelly_light_state",
 				Help: "1 if the light is on, else 0.",
+			},
+			append(deviceLabels, "ssid"),
+		),
+		CoverPosition: prometheus.NewGaugeVec(
+			prometheus.GaugeOpts{
+				Name: "shelly_cover_position_percent",
+				Help: "The position of the cover in percent in this instant.",
 			},
 			append(deviceLabels, "ssid"),
 		),
@@ -266,6 +274,7 @@ func NewMetrics(reg *prometheus.Registry) *Metrics {
 		m.DevicePowerVoltage,
 		m.LightBrightness,
 		m.LightState,
+		m.CoverPosition,
 	)
 
 	return m

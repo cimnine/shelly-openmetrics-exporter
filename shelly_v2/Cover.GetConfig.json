@@ -1,0 +1,30 @@
+{
+  "id": 0,
+  "name": "myCover",
+  "motor": {
+    "idle_power_thr": 2,
+    "idle_confirm_period": 0.25
+  },
+  "maxtime_open": 60,
+  "maxtime_close": 60,
+  "initial_state": "stopped",
+  "invert_directions": false,
+  "in_mode": "dual",
+  "swap_inputs": false,
+  "safety_switch": {
+    "enable": false,
+    "direction": "both",
+    "action": "stop",
+    "allowed_move": null
+  },
+  "power_limit": 2800,
+  "voltage_limit": 280,
+  "current_limit": 10,
+  "obstruction_detection": {
+    "enable": false,
+    "direction": "open",
+    "action": "stop",
+    "power_thr": 120,
+    "holdoff": 1
+  }
+}
