@@ -11,7 +11,7 @@ func (s *ShellyV1) FetchStatus() error {
 	client := &http.Client{}
 
 	//goland:noinspection HttpUrlsUsage
-	req, err := http.NewRequest(http.MethodGet, fmt.Sprintf("http://%s/status", s.targetHost), nil)
+	req, err := http.NewRequest(http.MethodGet, fmt.Sprintf("http://%s/status", s.TargetHost), nil)
 	if err != nil {
 		return err
 	}

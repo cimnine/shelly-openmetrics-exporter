@@ -11,23 +11,18 @@ import (
 	"github.com/prometheus/client_golang/prometheus/collectors"
 	"github.com/prometheus/client_golang/prometheus/promhttp"
 
+	"shelly-prometheus-exporter/shelly"
 	"shelly-prometheus-exporter/shelly_detect"
-	"shelly-prometheus-exporter/shelly_metrics"
 	"shelly-prometheus-exporter/shelly_v1"
 	"shelly-prometheus-exporter/shelly_v2"
 )
 
 var addr = flag.String("listen-address", ":54901", "The address to listen on for HTTP requests.")
 
-type Shelly interface {
-	FetchStatus() error
-	FillMetrics(m *shelly_metrics.Metrics)
-}
-
 func probeHandler(w http.ResponseWriter, req *http.Request) {
 	reg := prometheus.NewPedanticRegistry()
 
-	m := shelly_metrics.NewMetrics(reg)
+	m := shelly.NewMetrics(reg)
 
 	ctx, cancel := context.WithCancel(req.Context())
 	defer cancel()
@@ -45,23 +40,23 @@ func probeHandler(w http.ResponseWriter, req *http.Request) {
 		return
 	}
 
-	var shelly Shelly
+	var s shelly.Actor
 	switch shellyType {
 	case shelly_detect.ShellyGeneration1:
-		shelly = shelly_v1.New(target)
+		s = shelly_v1.New(target)
 	case shelly_detect.ShellyGeneration2:
-		shelly = shelly_v2.New(target)
+		s = shelly_v2.New(target)
 	default:
 		http.Error(w, fmt.Sprintf("unkown shelly generation '%d'", shellyType), http.StatusBadRequest)
 		return
 	}
 
-	err = shelly.FetchStatus()
+	err = s.FetchStatus()
 	if err != nil {
 		http.Error(w, fmt.Sprintf("error while fetching status: %s", err), http.StatusServiceUnavailable)
 		return
 	}
-	shelly.FillMetrics(m)
+	s.FillMetrics(m)
 
 	h := promhttp.HandlerFor(reg, promhttp.HandlerOpts{EnableOpenMetrics: true})
 	h.ServeHTTP(w, req)

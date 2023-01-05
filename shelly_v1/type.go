@@ -1,10 +1,16 @@
 package shelly_v1
 
+import (
+	"shelly-prometheus-exporter/shelly"
+)
+
 type ShellyV1 struct {
-	targetHost string
-	status     *Status
+	*shelly.Shelly
+	status *Status
 }
 
 func New(targetHost string) *ShellyV1 {
-	return &ShellyV1{targetHost: targetHost}
+	return &ShellyV1{
+		Shelly: &shelly.Shelly{TargetHost: targetHost},
+	}
 }

@@ -1,4 +1,4 @@
-package shelly_metrics
+package shelly
 
 import (
 	"github.com/prometheus/client_golang/prometheus"
@@ -14,6 +14,11 @@ type Metrics struct {
 	Temperature       *prometheus.GaugeVec
 	TemperatureDevice *prometheus.GaugeVec
 	ADCVoltage        *prometheus.GaugeVec
+	RelayOpen         *prometheus.GaugeVec
+	RelayOverpowered  *prometheus.GaugeVec
+	RelayValid        *prometheus.GaugeVec
+	InputState        *prometheus.GaugeVec
+	InputEventCount   *prometheus.CounterVec
 }
 
 func NewMetrics(reg *prometheus.Registry) *Metrics {
@@ -82,6 +87,41 @@ func NewMetrics(reg *prometheus.Registry) *Metrics {
 			},
 			lineLabels,
 		),
+		RelayOpen: prometheus.NewGaugeVec(
+			prometheus.GaugeOpts{
+				Name: "shelly_relay_open",
+				Help: "1 if the relay is open, else 0.",
+			},
+			lineLabels,
+		),
+		RelayOverpowered: prometheus.NewGaugeVec(
+			prometheus.GaugeOpts{
+				Name: "shelly_relay_overpowered",
+				Help: "1 if the relay is overpowered, else 0.",
+			},
+			lineLabels,
+		),
+		RelayValid: prometheus.NewGaugeVec(
+			prometheus.GaugeOpts{
+				Name: "shelly_relay_valid",
+				Help: "1 if the relay is valid, else 0.",
+			},
+			lineLabels,
+		),
+		InputState: prometheus.NewGaugeVec(
+			prometheus.GaugeOpts{
+				Name: "shelly_input_state",
+				Help: "The input value in this instant.",
+			},
+			lineLabels,
+		),
+		InputEventCount: prometheus.NewCounterVec(
+			prometheus.CounterOpts{
+				Name: "shelly_input_event_count",
+				Help: "The current value of the event_cnt counter.",
+			},
+			lineLabels,
+		),
 	}
 
 	reg.MustRegister(
@@ -94,6 +134,11 @@ func NewMetrics(reg *prometheus.Registry) *Metrics {
 		m.Temperature,
 		m.TemperatureDevice,
 		m.ADCVoltage,
+		m.RelayOpen,
+		m.RelayOverpowered,
+		m.RelayValid,
+		m.InputState,
+		m.InputEventCount,
 	)
 
 	return m

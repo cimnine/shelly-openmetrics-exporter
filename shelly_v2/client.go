@@ -45,7 +45,7 @@ func (s *ShellyV2) do(request JsonRpc2Request, statusRes *SwitchGetStatusRespons
 	}
 
 	//goland:noinspection HttpUrlsUsage
-	req, err := http.NewRequest(http.MethodPost, fmt.Sprintf("http://%s/rpc", s.targetHost), bytes.NewBuffer(reqPayload))
+	req, err := http.NewRequest(http.MethodPost, fmt.Sprintf("http://%s/rpc", s.TargetHost), bytes.NewBuffer(reqPayload))
 	if err != nil {
 		return
 	}

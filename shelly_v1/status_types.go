@@ -13,7 +13,7 @@ type Emeter struct {
 type Relay struct {
 	HasTimer       bool   `json:"has_timer"`
 	IsValid        bool   `json:"is_valid"`
-	Ison           bool   `json:"ison"`
+	IsOn           bool   `json:"ison"`
 	Overpower      bool   `json:"overpower"`
 	Source         string `json:"source"`
 	TimerDuration  int    `json:"timer_duration"`
@@ -65,6 +65,12 @@ type ADC struct {
 	Voltage float64 `json:"voltage"`
 }
 
+type Input struct {
+	Input      int    `json:"input"`
+	Event      string `json:"event"`
+	EventCount int    `json:"event_cnt"`
+}
+
 type Status struct {
 	ActionsStats      ActionStats  `json:"actions_stats"`
 	ADCs              []ADC        `json:"adcs"`
@@ -77,6 +83,7 @@ type Status struct {
 	FsMounted         bool         `json:"fs_mounted"`
 	FsSize            int          `json:"fs_size"`
 	HasUpdate         bool         `json:"has_update"`
+	Inputs            []Input      `json:"inputs"`
 	Mac               string       `json:"mac"`
 	Mqtt              MQTTStatus   `json:"mqtt"`
 	RamFree           int          `json:"ram_free"`
