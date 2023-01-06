@@ -1,0 +1,105 @@
+project_name: shelly-prometheus-exporter
+
+gitlab_urls:
+  use_package_registry: true
+
+before:
+  hooks:
+    # You may remove this if you don't use go modules.
+    - go mod tidy
+builds:
+  - binary: shelly-prometheus-exporter
+    env:
+      - CGO_ENABLED=0
+    goos:
+      - linux
+      - windows
+      - darwin
+
+gomod:
+  proxy: true
+
+sboms:
+  - artifacts: archive
+
+dockers:
+-
+  goos: linux
+  goarch: amd64
+  use: buildx
+  build_flag_templates:
+  - "--pull"
+  - "--platform=linux/amd64"
+  - "--label=org.opencontainers.image.created={{.Date}}"
+  - "--label=org.opencontainers.image.title={{.ProjectName}}"
+  - "--label=org.opencontainers.image.revision={{.FullCommit}}"
+  - "--label=org.opencontainers.image.version={{.Version}}"
+  image_templates:
+  - 'registry.gitlab.com/cimnine/shelly-prometheus-exporter:amd64-{{ .Tag }}'
+  - "registry.gitlab.com/cimnine/shelly-prometheus-exporter:amd64-v{{ .Major }}"
+  - "registry.gitlab.com/cimnine/shelly-prometheus-exporter:amd64-v{{ .Major }}.{{ .Minor }}"
+  - 'registry.gitlab.com/cimnine/shelly-prometheus-exporter:amd64-latest'
+-
+  goos: linux
+  goarch: arm64
+  use: buildx
+  build_flag_templates:
+  - "--pull"
+  - "--platform=linux/amd64"
+  - "--label=org.opencontainers.image.created={{.Date}}"
+  - "--label=org.opencontainers.image.title={{.ProjectName}}"
+  - "--label=org.opencontainers.image.revision={{.FullCommit}}"
+  - "--label=org.opencontainers.image.version={{.Version}}"
+  image_templates:
+  - 'registry.gitlab.com/cimnine/shelly-prometheus-exporter:arm64-{{ .Tag }}'
+  - "registry.gitlab.com/cimnine/shelly-prometheus-exporter:arm64-v{{ .Major }}"
+  - "registry.gitlab.com/cimnine/shelly-prometheus-exporter:arm64-v{{ .Major }}.{{ .Minor }}"
+  - 'registry.gitlab.com/cimnine/shelly-prometheus-exporter:arm64-latest'
+docker_manifests:
+- name_template: 'registry.gitlab.com/cimnine/shelly-prometheus-exporter:{{ .Tag }}'
+  image_templates:
+  - 'registry.gitlab.com/cimnine/shelly-prometheus-exporter:amd64-{{ .Tag }}'
+  - 'registry.gitlab.com/cimnine/shelly-prometheus-exporter:arm64-{{ .Tag }}'
+- name_template: 'registry.gitlab.com/cimnine/shelly-prometheus-exporter:v{{ .Major }}"'
+  image_templates:
+  - 'registry.gitlab.com/cimnine/shelly-prometheus-exporter:amd64-v{{ .Major }}"'
+  - 'registry.gitlab.com/cimnine/shelly-prometheus-exporter:arm64-v{{ .Major }}"'
+- name_template: 'registry.gitlab.com/cimnine/shelly-prometheus-exporter:v{{ .Major }}.{{ .Minor }}"'
+  image_templates:
+  - 'registry.gitlab.com/cimnine/shelly-prometheus-exporter:amd64-v{{ .Major }}.{{ .Minor }}"'
+  - 'registry.gitlab.com/cimnine/shelly-prometheus-exporter:arm64-v{{ .Major }}.{{ .Minor }}"'
+- name_template: 'registry.gitlab.com/cimnine/shelly-prometheus-exporter:latest'
+  image_templates:
+  - 'registry.gitlab.com/cimnine/shelly-prometheus-exporter:amd64-latest'
+  - 'registry.gitlab.com/cimnine/shelly-prometheus-exporter:arm64-latest'
+
+archives:
+  - format: tar.gz
+    # this name template makes the OS and Arch compatible with the results of uname.
+    name_template: >-
+      {{ .ProjectName }}_
+      {{- title .Os }}_
+      {{- if eq .Arch "amd64" }}x86_64
+      {{- else if eq .Arch "386" }}i386
+      {{- else }}{{ .Arch }}{{ end }}
+      {{- if .Arm }}v{{ .Arm }}{{ end }}
+    # use zip for windows archives
+    format_overrides:
+    - goos: windows
+      format: zip
+
+checksum:
+  name_template: 'checksums.txt'
+
+snapshot:
+  name_template: "{{ incpatch .Version }}-next"
+
+changelog:
+  sort: asc
+  filters:
+    exclude:
+      - '^docs:'
+      - '^test:'
+
+# yaml-language-server: $schema=https://goreleaser.com/static/schema.json
+# vim: set ts=2 sw=2 tw=0 fo=cnqoj
