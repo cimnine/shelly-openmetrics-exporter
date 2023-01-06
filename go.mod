@@ -1,4 +1,4 @@
-module shelly-prometheus-exporter
+module gitlab.com/cimnine/shelly-prometheus-exporter
 
 go 1.19
 

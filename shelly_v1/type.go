@@ -1,7 +1,7 @@
 package shelly_v1
 
 import (
-	"shelly-prometheus-exporter/shelly"
+	"gitlab.com/cimnine/shelly-prometheus-exporter/shelly"
 )
 
 type ShellyV1 struct {

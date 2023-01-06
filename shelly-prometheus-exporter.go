@@ -11,10 +11,10 @@ import (
 	"github.com/prometheus/client_golang/prometheus/collectors"
 	"github.com/prometheus/client_golang/prometheus/promhttp"
 
-	"shelly-prometheus-exporter/shelly"
-	"shelly-prometheus-exporter/shelly_detect"
-	"shelly-prometheus-exporter/shelly_v1"
-	"shelly-prometheus-exporter/shelly_v2"
+	"gitlab.com/cimnine/shelly-prometheus-exporter/shelly"
+	"gitlab.com/cimnine/shelly-prometheus-exporter/shelly_detect"
+	"gitlab.com/cimnine/shelly-prometheus-exporter/shelly_v1"
+	"gitlab.com/cimnine/shelly-prometheus-exporter/shelly_v2"
 )
 
 var (
@@ -74,7 +74,7 @@ func probeHandler(w http.ResponseWriter, req *http.Request) {
 
 func main() {
 	log.Printf("shelly-prometheus-exporter %s, commit %s, built at %s", version, commit, date)
-	
+
 	flag.Parse()
 
 	registry := prometheus.NewRegistry()

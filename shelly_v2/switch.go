@@ -1,7 +1,7 @@
 package shelly_v2
 
 import (
-	"shelly-prometheus-exporter/shelly"
+	"gitlab.com/cimnine/shelly-prometheus-exporter/shelly"
 )
 
 type SwitchGetStatusRequest struct {
