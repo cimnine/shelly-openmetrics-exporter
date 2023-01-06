@@ -8,7 +8,6 @@ release:
     - docker:dind
 
   variables:
-    # Optionally use GitLab's built-in image registry.
     DOCKER_REGISTRY: $CI_REGISTRY
     DOCKER_USERNAME: $CI_REGISTRY_USER
     DOCKER_PASSWORD: $CI_REGISTRY_PASSWORD
@@ -17,11 +16,12 @@ release:
     # generate a changelog.
     GIT_DEPTH: 0
 
-  # Only run this release job for tags, not every commit (for example).
   only:
     refs:
       - tags
 
+  before_script:
+    - docker login -u $CI_REGISTRY_USER -p $CI_REGISTRY_PASSWORD $CI_REGISTRY
   script: |
     # GITLAB_TOKEN is needed to create GitLab releases.
     # DOCKER_* are needed to push Docker images.
