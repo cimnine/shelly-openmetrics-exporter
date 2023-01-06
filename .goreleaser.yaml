@@ -1,11 +1,7 @@
 project_name: shelly-openmetrics-exporter
 
-gitlab_urls:
-  use_package_registry: true
-
 before:
   hooks:
-    # You may remove this if you don't use go modules.
     - go mod tidy
 builds:
   - binary: shelly-openmetrics-exporter
@@ -35,43 +31,43 @@ dockers:
   - "--label=org.opencontainers.image.revision={{.FullCommit}}"
   - "--label=org.opencontainers.image.version={{.Version}}"
   image_templates:
-  - 'registry.gitlab.com/cimnine/shelly-openmetrics-exporter:amd64-{{ .Tag }}'
-  - "registry.gitlab.com/cimnine/shelly-openmetrics-exporter:amd64-v{{ .Major }}"
-  - "registry.gitlab.com/cimnine/shelly-openmetrics-exporter:amd64-v{{ .Major }}.{{ .Minor }}"
-  - 'registry.gitlab.com/cimnine/shelly-openmetrics-exporter:amd64-latest'
+  - "ghcr.io/cimnine/shelly-openmetrics-exporter:amd64-{{ .Tag }}"
+  - "ghcr.io/cimnine/shelly-openmetrics-exporter:amd64-v{{ .Major }}"
+  - "ghcr.io/cimnine/shelly-openmetrics-exporter:amd64-v{{ .Major }}.{{ .Minor }}"
+  - "ghcr.io/cimnine/shelly-openmetrics-exporter:amd64-latest"
 -
   goos: linux
   goarch: arm64
   use: buildx
   build_flag_templates:
   - "--pull"
-  - "--platform=linux/amd64"
+  - "--platform=linux/arm64"
   - "--label=org.opencontainers.image.created={{.Date}}"
   - "--label=org.opencontainers.image.title={{.ProjectName}}"
   - "--label=org.opencontainers.image.revision={{.FullCommit}}"
   - "--label=org.opencontainers.image.version={{.Version}}"
   image_templates:
-  - 'registry.gitlab.com/cimnine/shelly-openmetrics-exporter:arm64-{{ .Tag }}'
-  - "registry.gitlab.com/cimnine/shelly-openmetrics-exporter:arm64-v{{ .Major }}"
-  - "registry.gitlab.com/cimnine/shelly-openmetrics-exporter:arm64-v{{ .Major }}.{{ .Minor }}"
-  - 'registry.gitlab.com/cimnine/shelly-openmetrics-exporter:arm64-latest'
+  - 'ghcr.io/cimnine/shelly-openmetrics-exporter:arm64-{{ .Tag }}'
+  - "ghcr.io/cimnine/shelly-openmetrics-exporter:arm64-v{{ .Major }}"
+  - "ghcr.io/cimnine/shelly-openmetrics-exporter:arm64-v{{ .Major }}.{{ .Minor }}"
+  - 'ghcr.io/cimnine/shelly-openmetrics-exporter:arm64-latest'
 docker_manifests:
-- name_template: 'registry.gitlab.com/cimnine/shelly-openmetrics-exporter:{{ .Tag }}'
+- name_template: 'ghcr.io/cimnine/shelly-openmetrics-exporter:{{ .Tag }}'
   image_templates:
-  - 'registry.gitlab.com/cimnine/shelly-openmetrics-exporter:amd64-{{ .Tag }}'
-  - 'registry.gitlab.com/cimnine/shelly-openmetrics-exporter:arm64-{{ .Tag }}'
-- name_template: 'registry.gitlab.com/cimnine/shelly-openmetrics-exporter:v{{ .Major }}"'
+  - 'ghcr.io/cimnine/shelly-openmetrics-exporter:amd64-{{ .Tag }}'
+  - 'ghcr.io/cimnine/shelly-openmetrics-exporter:arm64-{{ .Tag }}'
+- name_template: 'ghcr.io/cimnine/shelly-openmetrics-exporter:v{{ .Major }}"'
   image_templates:
-  - 'registry.gitlab.com/cimnine/shelly-openmetrics-exporter:amd64-v{{ .Major }}"'
-  - 'registry.gitlab.com/cimnine/shelly-openmetrics-exporter:arm64-v{{ .Major }}"'
-- name_template: 'registry.gitlab.com/cimnine/shelly-openmetrics-exporter:v{{ .Major }}.{{ .Minor }}"'
+  - 'ghcr.io/cimnine/shelly-openmetrics-exporter:amd64-v{{ .Major }}"'
+  - 'ghcr.io/cimnine/shelly-openmetrics-exporter:arm64-v{{ .Major }}"'
+- name_template: 'ghcr.io/cimnine/shelly-openmetrics-exporter:v{{ .Major }}.{{ .Minor }}"'
   image_templates:
-  - 'registry.gitlab.com/cimnine/shelly-openmetrics-exporter:amd64-v{{ .Major }}.{{ .Minor }}"'
-  - 'registry.gitlab.com/cimnine/shelly-openmetrics-exporter:arm64-v{{ .Major }}.{{ .Minor }}"'
-- name_template: 'registry.gitlab.com/cimnine/shelly-openmetrics-exporter:latest'
+  - 'ghcr.io/cimnine/shelly-openmetrics-exporter:amd64-v{{ .Major }}.{{ .Minor }}"'
+  - 'ghcr.io/cimnine/shelly-openmetrics-exporter:arm64-v{{ .Major }}.{{ .Minor }}"'
+- name_template: 'ghcr.io/cimnine/shelly-openmetrics-exporter:latest'
   image_templates:
-  - 'registry.gitlab.com/cimnine/shelly-openmetrics-exporter:amd64-latest'
-  - 'registry.gitlab.com/cimnine/shelly-openmetrics-exporter:arm64-latest'
+  - 'ghcr.io/cimnine/shelly-openmetrics-exporter:amd64-latest'
+  - 'ghcr.io/cimnine/shelly-openmetrics-exporter:arm64-latest'
 
 archives:
   - format: tar.gz
