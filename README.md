@@ -27,7 +27,7 @@ you may use the `username` and `password` arguments to pass credentials.
 - [x] temperature
 - [x] goreleaser
 - [ ] tests
-- [ ] rename shelly-openmetrics-exporter
+- [x] rename shelly-openmetrics-exporter
 - [x] authentication
 
 ## License
