@@ -1,7 +1,7 @@
 package shelly_v2
 
 import (
-	"gitlab.com/cimnine/shelly-prometheus-exporter/shelly"
+	"github.com/cimnine/shelly-openmetrics-exporter/shelly"
 )
 
 type DevicePowerGetStatusRequest struct {
@@ -42,7 +42,7 @@ func (s *ShellyV2) getDevicePowerStatus(status *Status) error {
 		res := DevicePowerGetStatusResponse{}
 		request := JsonRpc2Request{
 			JsonRpcVersion: "2.0",
-			Src:            "shelly-prometheus-exporter",
+			Src:            "shelly-openmetrics-exporter",
 			Method:         "DevicePower.GetStatus",
 			Params:         DevicePowerGetStatusRequest{Id: i},
 		}

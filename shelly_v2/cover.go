@@ -1,7 +1,7 @@
 package shelly_v2
 
 import (
-	"gitlab.com/cimnine/shelly-prometheus-exporter/shelly"
+	"github.com/cimnine/shelly-openmetrics-exporter/shelly"
 )
 
 type CoverGetStatusRequest struct {
@@ -93,7 +93,7 @@ func (s *ShellyV2) getCoverStatus(status *Status) error {
 		res := CoverGetStatusResponse{}
 		request := JsonRpc2Request{
 			JsonRpcVersion: "2.0",
-			Src:            "shelly-prometheus-exporter",
+			Src:            "shelly-openmetrics-exporter",
 			Method:         "Cover.GetStatus",
 			Params:         CoverGetStatusRequest{Id: i},
 		}
@@ -116,7 +116,7 @@ func (s *ShellyV2) getCoverConfig(status *Status) error {
 		res := CoverGetConfigResponse{}
 		request := JsonRpc2Request{
 			JsonRpcVersion: "2.0",
-			Src:            "shelly-prometheus-exporter",
+			Src:            "shelly-openmetrics-exporter",
 			Method:         "Cover.GetConfig",
 			Params:         CoverGetConfigRequest{Id: i},
 		}

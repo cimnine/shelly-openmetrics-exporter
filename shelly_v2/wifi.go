@@ -1,7 +1,7 @@
 package shelly_v2
 
 import (
-	"gitlab.com/cimnine/shelly-prometheus-exporter/shelly"
+	"github.com/cimnine/shelly-openmetrics-exporter/shelly"
 )
 
 type WifiGetStatusResponse struct {
@@ -26,7 +26,7 @@ func (s *ShellyV2) getWifiStatus(status *Status) error {
 	res := &WifiGetStatusResponse{}
 	request := JsonRpc2Request{
 		JsonRpcVersion: "2.0",
-		Src:            "shelly-prometheus-exporter",
+		Src:            "shelly-openmetrics-exporter",
 		Method:         "Wifi.GetStatus",
 	}
 

@@ -1,7 +1,7 @@
 package shelly_v2
 
 import (
-	"gitlab.com/cimnine/shelly-prometheus-exporter/shelly"
+	"github.com/cimnine/shelly-openmetrics-exporter/shelly"
 )
 
 type SwitchGetStatusRequest struct {
@@ -78,7 +78,7 @@ func (s *ShellyV2) getSwitchStatus(status *Status) error {
 		res := SwitchGetStatusResponse{}
 		request := JsonRpc2Request{
 			JsonRpcVersion: "2.0",
-			Src:            "shelly-prometheus-exporter",
+			Src:            "shelly-openmetrics-exporter",
 			Method:         "Switch.GetStatus",
 			Params:         SwitchGetStatusRequest{Id: i},
 		}
@@ -101,7 +101,7 @@ func (s *ShellyV2) getSwitchConfig(status *Status) error {
 		res := SwitchGetConfigResponse{}
 		request := JsonRpc2Request{
 			JsonRpcVersion: "2.0",
-			Src:            "shelly-prometheus-exporter",
+			Src:            "shelly-openmetrics-exporter",
 			Method:         "Switch.GetConfig",
 			Params:         SwitchGetConfigRequest{Id: i},
 		}

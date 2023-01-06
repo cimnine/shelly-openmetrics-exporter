@@ -1,7 +1,7 @@
 package shelly_v2
 
 import (
-	"gitlab.com/cimnine/shelly-prometheus-exporter/shelly"
+	"github.com/cimnine/shelly-openmetrics-exporter/shelly"
 )
 
 type Status struct {

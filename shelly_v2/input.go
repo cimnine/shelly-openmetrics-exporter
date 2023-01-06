@@ -1,7 +1,7 @@
 package shelly_v2
 
 import (
-	"gitlab.com/cimnine/shelly-prometheus-exporter/shelly"
+	"github.com/cimnine/shelly-openmetrics-exporter/shelly"
 )
 
 type InputGetStatusRequest struct {
@@ -32,7 +32,7 @@ func (s *ShellyV2) getInputStatus(status *Status) error {
 		res := InputGetStatusResponse{}
 		request := JsonRpc2Request{
 			JsonRpcVersion: "2.0",
-			Src:            "shelly-prometheus-exporter",
+			Src:            "shelly-openmetrics-exporter",
 			Method:         "Input.GetStatus",
 			Params:         InputGetStatusRequest{Id: i},
 		}

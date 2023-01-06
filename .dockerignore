@@ -1,4 +1,4 @@
 *
 .*
 !dist/
-!shelly-prometheus-exporter
+!shelly-openmetrics-exporter

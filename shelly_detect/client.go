@@ -21,7 +21,7 @@ func DetectVersion(targetHost string) (ShellyGeneration, error) {
 		return 0, err
 	}
 
-	req.Header.Set("User-Agent", "shelly-prometheus-exporter")
+	req.Header.Set("User-Agent", "shelly-openmetrics-exporter")
 
 	res, err := client.Do(req)
 	if err != nil {

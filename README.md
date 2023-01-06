@@ -1,7 +1,6 @@
-# shelly-prometheus-exporter
+# shelly-openmetrics-exporter
 
-This is a prometheus exporter written in Go.
-It has no other dependencies but the prometheus client libraries.
+This is an openmetrics exporter written in Go.
 It's `/probe` and `/metrics` endpoint report in OpenTracing format.
 
 ## Features

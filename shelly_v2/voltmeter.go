@@ -1,7 +1,7 @@
 package shelly_v2
 
 import (
-	"gitlab.com/cimnine/shelly-prometheus-exporter/shelly"
+	"github.com/cimnine/shelly-openmetrics-exporter/shelly"
 )
 
 type VoltmeterGetStatusRequest struct {
@@ -30,7 +30,7 @@ func (s *ShellyV2) getVoltmeterStatus(status *Status) error {
 		res := VoltmeterGetStatusResponse{}
 		request := JsonRpc2Request{
 			JsonRpcVersion: "2.0",
-			Src:            "shelly-prometheus-exporter",
+			Src:            "shelly-openmetrics-exporter",
 			Method:         "Voltmeter.GetStatus",
 			Params:         VoltmeterGetStatusRequest{Id: i},
 		}

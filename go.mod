@@ -1,4 +1,4 @@
-module gitlab.com/cimnine/shelly-prometheus-exporter
+module github.com/cimnine/shelly-openmetrics-exporter
 
 go 1.19
 

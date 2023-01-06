@@ -1,7 +1,7 @@
 package shelly_v1
 
 import (
-	"gitlab.com/cimnine/shelly-prometheus-exporter/shelly"
+	"github.com/cimnine/shelly-openmetrics-exporter/shelly"
 )
 
 func (s *ShellyV1) FillMetrics(m *shelly.Metrics) {

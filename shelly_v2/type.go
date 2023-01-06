@@ -3,7 +3,7 @@ package shelly_v2
 import (
 	"net/http"
 
-	"gitlab.com/cimnine/shelly-prometheus-exporter/shelly"
+	"github.com/cimnine/shelly-openmetrics-exporter/shelly"
 )
 
 type ShellyV2 struct {

@@ -11,10 +11,10 @@ import (
 	"github.com/prometheus/client_golang/prometheus/collectors"
 	"github.com/prometheus/client_golang/prometheus/promhttp"
 
-	"gitlab.com/cimnine/shelly-prometheus-exporter/shelly"
-	"gitlab.com/cimnine/shelly-prometheus-exporter/shelly_detect"
-	"gitlab.com/cimnine/shelly-prometheus-exporter/shelly_v1"
-	"gitlab.com/cimnine/shelly-prometheus-exporter/shelly_v2"
+	"github.com/cimnine/shelly-openmetrics-exporter/shelly"
+	"github.com/cimnine/shelly-openmetrics-exporter/shelly_detect"
+	"github.com/cimnine/shelly-openmetrics-exporter/shelly_v1"
+	"github.com/cimnine/shelly-openmetrics-exporter/shelly_v2"
 )
 
 var (
@@ -25,7 +25,7 @@ var (
 
 var addr = flag.String("listen-address", ":54901", "The address to listen on for HTTP requests.")
 
-const userAgent = "shelly-prometheus-exporter"
+const userAgent = "shelly-openmetrics-exporter"
 
 func probeHandler(w http.ResponseWriter, req *http.Request) {
 	reg := prometheus.NewPedanticRegistry()
@@ -73,7 +73,7 @@ func probeHandler(w http.ResponseWriter, req *http.Request) {
 }
 
 func main() {
-	log.Printf("shelly-prometheus-exporter %s, commit %s, built at %s", version, commit, date)
+	log.Printf("shelly-openmetrics-exporter %s, commit %s, built at %s", version, commit, date)
 
 	flag.Parse()
 

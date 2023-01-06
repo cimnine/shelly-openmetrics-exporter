@@ -1,7 +1,7 @@
 package shelly_v2
 
 import (
-	"gitlab.com/cimnine/shelly-prometheus-exporter/shelly"
+	"github.com/cimnine/shelly-openmetrics-exporter/shelly"
 )
 
 type CloudGetStatusResponse struct {
@@ -28,7 +28,7 @@ func (s *ShellyV2) getCloudConfig(status *Status) error {
 	res := &CloudGetConfigResponse{}
 	request := JsonRpc2Request{
 		JsonRpcVersion: "2.0",
-		Src:            "shelly-prometheus-exporter",
+		Src:            "shelly-openmetrics-exporter",
 		Method:         "Cloud.GetConfig",
 	}
 
@@ -48,7 +48,7 @@ func (s *ShellyV2) getCloudStatus(status *Status) error {
 	res := &CloudGetStatusResponse{}
 	request := JsonRpc2Request{
 		JsonRpcVersion: "2.0",
-		Src:            "shelly-prometheus-exporter",
+		Src:            "shelly-openmetrics-exporter",
 		Method:         "Cloud.GetStatus",
 	}
 
