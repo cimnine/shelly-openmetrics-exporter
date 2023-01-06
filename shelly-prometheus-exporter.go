@@ -17,6 +17,12 @@ import (
 	"shelly-prometheus-exporter/shelly_v2"
 )
 
+var (
+	version = "snapshot"
+	commit  = "unknown"
+	date    = "unknown"
+)
+
 var addr = flag.String("listen-address", ":54901", "The address to listen on for HTTP requests.")
 
 const userAgent = "shelly-prometheus-exporter"
@@ -67,6 +73,8 @@ func probeHandler(w http.ResponseWriter, req *http.Request) {
 }
 
 func main() {
+	log.Printf("shelly-prometheus-exporter %s, commit %s, built at %s", version, commit, date)
+	
 	flag.Parse()
 
 	registry := prometheus.NewRegistry()

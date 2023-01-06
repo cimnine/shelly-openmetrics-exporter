@@ -23,8 +23,9 @@ You may configure a port like this `name:port`.
 
 - [x] detect shelly generation
 - [x] temperature
-- [ ] goreleaser
+- [x] goreleaser
 - [ ] tests
+- [ ] rename shelly-openmetrics-exporter
 - [x] authentication
 
 ## License
