@@ -26,7 +26,7 @@ jobs:
       - 
         name: Download latest syft version
         run: |
-          curl --silent --show-error -sSfL https://raw.githubusercontent.com/anchore/syft/main/install.sh | sh -s -- -b .
+          curl -sSfL https://raw.githubusercontent.com/anchore/syft/main/install.sh | sh -s -- -b /usr/local/bin
       - 
         name: Setup Go
         uses: actions/setup-go@v3
