@@ -18,6 +18,9 @@ Use `target` to define which shelly to query.
 You may use an IP or a domain name.
 You may configure a port like this `name:port`.
 
+If your Shelly is password protected,
+you may use the `username` and `password` arguments to pass credentials.
+
 ## TODO
 
 - [x] detect shelly generation
