@@ -11,6 +11,13 @@ builds:
       - linux
       - windows
       - darwin
+    goarch:
+      - amd64
+      - arm64
+      - arm
+    goarm:
+      - 6
+      - 7
 
 gomod:
   proxy: true
@@ -19,45 +26,73 @@ sboms:
   - artifacts: archive
 
 dockers:
--
-  goos: linux
-  goarch: amd64
-  use: buildx
-  build_flag_templates:
-  - "--pull"
-  - "--platform=linux/amd64"
-  - "--label=org.opencontainers.image.created={{.Date}}"
-  - "--label=org.opencontainers.image.title={{.ProjectName}}"
-  - "--label=org.opencontainers.image.revision={{.FullCommit}}"
-  - "--label=org.opencontainers.image.version={{.Version}}"
-  image_templates:
-  - "ghcr.io/cimnine/shelly-openmetrics-exporter:amd64-{{ .Tag }}"
-  - "ghcr.io/cimnine/shelly-openmetrics-exporter:amd64-latest"
--
-  goos: linux
-  goarch: arm64
-  use: buildx
-  build_flag_templates:
-  - "--pull"
-  - "--platform=linux/arm64"
-  - "--label=org.opencontainers.image.created={{.Date}}"
-  - "--label=org.opencontainers.image.title={{.ProjectName}}"
-  - "--label=org.opencontainers.image.revision={{.FullCommit}}"
-  - "--label=org.opencontainers.image.version={{.Version}}"
-  image_templates:
-  - "ghcr.io/cimnine/shelly-openmetrics-exporter:arm64-{{ .Tag }}"
-  - "ghcr.io/cimnine/shelly-openmetrics-exporter:arm64-latest"
+  - goos: linux
+    goarch: amd64
+    use: buildx
+    build_flag_templates:
+      - "--pull"
+      - "--platform=linux/amd64"
+      - "--label=org.opencontainers.image.created={{.Date}}"
+      - "--label=org.opencontainers.image.title={{.ProjectName}}"
+      - "--label=org.opencontainers.image.revision={{.FullCommit}}"
+      - "--label=org.opencontainers.image.version={{.Version}}"
+    image_templates:
+      - "ghcr.io/cimnine/shelly-openmetrics-exporter:amd64-{{ .Tag }}"
+      - "ghcr.io/cimnine/shelly-openmetrics-exporter:amd64-latest"
+  - goos: linux
+    goarch: arm64
+    use: buildx
+    build_flag_templates:
+      - "--pull"
+      - "--platform=linux/arm64"
+      - "--label=org.opencontainers.image.created={{.Date}}"
+      - "--label=org.opencontainers.image.title={{.ProjectName}}"
+      - "--label=org.opencontainers.image.revision={{.FullCommit}}"
+      - "--label=org.opencontainers.image.version={{.Version}}"
+    image_templates:
+      - "ghcr.io/cimnine/shelly-openmetrics-exporter:arm64-{{ .Tag }}"
+      - "ghcr.io/cimnine/shelly-openmetrics-exporter:arm64-latest"
+  - goos: linux
+    goarch: arm
+    goarm: 6
+    use: buildx
+    build_flag_templates:
+      - "--pull"
+      - "--platform=linux/arm/v7"
+      - "--label=org.opencontainers.image.created={{.Date}}"
+      - "--label=org.opencontainers.image.title={{.ProjectName}}"
+      - "--label=org.opencontainers.image.revision={{.FullCommit}}"
+      - "--label=org.opencontainers.image.version={{.Version}}"
+    image_templates:
+      - "ghcr.io/cimnine/shelly-openmetrics-exporter:armv6-{{ .Tag }}"
+      - "ghcr.io/cimnine/shelly-openmetrics-exporter:armv6-latest"
+  - goos: linux
+    goarch: arm
+    goarm: 7
+    use: buildx
+    build_flag_templates:
+      - "--pull"
+      - "--platform=linux/arm/v7"
+      - "--label=org.opencontainers.image.created={{.Date}}"
+      - "--label=org.opencontainers.image.title={{.ProjectName}}"
+      - "--label=org.opencontainers.image.revision={{.FullCommit}}"
+      - "--label=org.opencontainers.image.version={{.Version}}"
+    image_templates:
+      - "ghcr.io/cimnine/shelly-openmetrics-exporter:armv7-{{ .Tag }}"
+      - "ghcr.io/cimnine/shelly-openmetrics-exporter:armv7-latest"
 docker_manifests:
-- 
-  name_template: 'ghcr.io/cimnine/shelly-openmetrics-exporter:latest'
-  image_templates:
-  - 'ghcr.io/cimnine/shelly-openmetrics-exporter:amd64-latest'
-  - 'ghcr.io/cimnine/shelly-openmetrics-exporter:arm64-latest'
-- 
-  name_template: 'ghcr.io/cimnine/shelly-openmetrics-exporter:{{ .Tag }}'
-  image_templates:
-  - 'ghcr.io/cimnine/shelly-openmetrics-exporter:amd64-{{ .Tag }}'
-  - 'ghcr.io/cimnine/shelly-openmetrics-exporter:arm64-{{ .Tag }}'
+  - name_template: "ghcr.io/cimnine/shelly-openmetrics-exporter:latest"
+    image_templates:
+      - "ghcr.io/cimnine/shelly-openmetrics-exporter:amd64-latest"
+      - "ghcr.io/cimnine/shelly-openmetrics-exporter:arm64-latest"
+      - "ghcr.io/cimnine/shelly-openmetrics-exporter:armv6-latest"
+      - "ghcr.io/cimnine/shelly-openmetrics-exporter:armv7-latest"
+  - name_template: "ghcr.io/cimnine/shelly-openmetrics-exporter:{{ .Tag }}"
+    image_templates:
+      - "ghcr.io/cimnine/shelly-openmetrics-exporter:amd64-{{ .Tag }}"
+      - "ghcr.io/cimnine/shelly-openmetrics-exporter:arm64-{{ .Tag }}"
+      - "ghcr.io/cimnine/shelly-openmetrics-exporter:armv6-{{ .Tag }}"
+      - "ghcr.io/cimnine/shelly-openmetrics-exporter:armv7-{{ .Tag }}"
 
 archives:
   - format: tar.gz
@@ -71,11 +106,11 @@ archives:
       {{- if .Arm }}v{{ .Arm }}{{ end }}
     # use zip for windows archives
     format_overrides:
-    - goos: windows
-      format: zip
+      - goos: windows
+        format: zip
 
 checksum:
-  name_template: 'checksums.txt'
+  name_template: "checksums.txt"
 
 snapshot:
   name_template: "{{ incpatch .Version }}-next"
@@ -84,8 +119,7 @@ changelog:
   sort: asc
   filters:
     exclude:
-      - '^docs:'
-      - '^test:'
-
+      - "^docs:"
+      - "^test:"
 # yaml-language-server: $schema=https://goreleaser.com/static/schema.json
 # vim: set ts=2 sw=2 tw=0 fo=cnqoj
