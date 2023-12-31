@@ -105,4 +105,12 @@ func (s *ShellyV1) readEmeters(m *shelly.Metrics) {
 		m.TotalReturned.WithLabelValues(labels...).Add(emeter.TotalReturned)
 		m.Voltage.WithLabelValues(labels...).Add(emeter.Voltage)
 	}
+
+	if s.status.EmeterN != nil && s.status.EmeterN.IsValid {
+		labels := shelly.DeviceLabels(s.Shelly)
+		m.NeutralCurrent.WithLabelValues(labels...).Set(s.status.EmeterN.Current)
+		m.NeutralIxsum.WithLabelValues(labels...).Set(s.status.EmeterN.Ixsum)
+		m.NeutralValid.WithLabelValues(labels...).Set(shelly.BoolToFloat(s.status.EmeterN.IsValid))
+		m.NeutralMismatch.WithLabelValues(labels...).Set(shelly.BoolToFloat(s.status.EmeterN.Mismatch))
+	}
 }
