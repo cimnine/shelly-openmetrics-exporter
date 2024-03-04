@@ -9,6 +9,10 @@ type Metrics struct {
 	PowerLimit            *prometheus.GaugeVec
 	Current               *prometheus.GaugeVec
 	CurrentLimit          *prometheus.GaugeVec
+	NeutralCurrent        *prometheus.GaugeVec
+	NeutralIxsum          *prometheus.GaugeVec
+	NeutralMismatch       *prometheus.GaugeVec
+	NeutralValid          *prometheus.GaugeVec
 	Voltage               *prometheus.GaugeVec
 	VoltageLimit          *prometheus.GaugeVec
 	PowerFactor           *prometheus.GaugeVec
@@ -68,6 +72,34 @@ func NewMetrics(reg *prometheus.Registry) *Metrics {
 				Help: "The current limit value in this instant.",
 			},
 			lineLabels,
+		),
+		NeutralCurrent: prometheus.NewGaugeVec(
+			prometheus.GaugeOpts{
+				Name: "shelly_neutral_current_a",
+				Help: "The neutral current value in this instant.",
+			},
+			deviceLabels,
+		),
+		NeutralIxsum: prometheus.NewGaugeVec(
+			prometheus.GaugeOpts{
+				Name: "shelly_neutral_ixsum_a",
+				Help: "The neutral ixsum value in this instant.",
+			},
+			deviceLabels,
+		),
+		NeutralMismatch: prometheus.NewGaugeVec(
+			prometheus.GaugeOpts{
+				Name: "shelly_neutral_mismatch",
+				Help: "1 if the neutral is mismatched, else 0.",
+			},
+			deviceLabels,
+		),
+		NeutralValid: prometheus.NewGaugeVec(
+			prometheus.GaugeOpts{
+				Name: "shelly_neutral_valid",
+				Help: "1 if the neutral is valid, else 0.",
+			},
+			deviceLabels,
 		),
 		Voltage: prometheus.NewGaugeVec(
 			prometheus.GaugeOpts{
@@ -251,6 +283,10 @@ func NewMetrics(reg *prometheus.Registry) *Metrics {
 		m.PowerLimit,
 		m.Current,
 		m.CurrentLimit,
+		m.NeutralCurrent,
+		m.NeutralIxsum,
+		m.NeutralMismatch,
+		m.NeutralValid,
 		m.Voltage,
 		m.VoltageLimit,
 		m.PowerFactor,
