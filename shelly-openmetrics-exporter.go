@@ -41,8 +41,12 @@ func probeHandler(w http.ResponseWriter, req *http.Request) {
 		http.Error(w, "'target' parameter is missing", http.StatusBadRequest)
 		return
 	}
-	username := req.URL.Query().Get("username")
-	password := req.URL.Query().Get("password")
+
+	username, password, ok := req.BasicAuth()
+	if !ok {
+		username = req.URL.Query().Get("username")
+		password = req.URL.Query().Get("password")
+	}
 
 	shellyType, err := shelly_detect.DetectVersion(target)
 	if err != nil {
