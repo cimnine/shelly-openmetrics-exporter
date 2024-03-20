@@ -19,7 +19,7 @@ You may use an IP or a domain name.
 You may configure a port like this `name:port`.
 
 If your Shelly is password protected, use basic auth to send the username and password.
-For backward compatibility, the query parameter `username` and `password` will also work.
+For backward compatibility, the query parameters `username` and `password` will also work.
 
 ## TODO
 
