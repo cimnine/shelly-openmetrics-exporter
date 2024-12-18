@@ -1,6 +1,6 @@
 module github.com/cimnine/shelly-openmetrics-exporter
 
-go 1.19
+go 1.23
 
 require (
 	github.com/ndecker/go-http-digest-auth-client v0.4.0
