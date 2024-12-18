@@ -26,8 +26,7 @@ jobs:
         run: git fetch --force --tags
       -
         name: Download latest syft version
-        run: |
-          curl -sSfL https://raw.githubusercontent.com/anchore/syft/main/install.sh | sh -s -- -b /usr/local/bin
+        uses: anchore/sbom-action/download-syft@v0
       -
         name: Setup Go
         uses: actions/setup-go@v5
