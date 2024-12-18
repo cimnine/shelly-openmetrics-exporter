@@ -30,6 +30,12 @@ For backward compatibility, the query parameters `username` and `password` will 
 - [x] rename shelly-openmetrics-exporter
 - [x] authentication
 
+## Release
+
+Push a new tag.
+A GitHub Action will be triggered.
+Goreleaser will do the rest.
+
 ## License
 
 This software is licensed [under MIT license](/LICENSE).
