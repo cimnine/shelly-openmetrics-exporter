@@ -157,6 +157,7 @@ docker_signs:
     args:
       - sign
       - '--oidc-provider=github-actions'
+      - '--output-certificate=${certificate}'
       - '--upload=false'
       - "${artifact}"
       - '--yes'
