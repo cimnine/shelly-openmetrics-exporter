@@ -150,7 +150,7 @@ signs:
       - '${artifact}'
       - '--yes'
     artifacts: all
-    output: true
+    output: false
 
 docker_signs:
   - cmd: cosign
@@ -158,8 +158,7 @@ docker_signs:
       - sign
       - '--oidc-provider=github-actions'
       - '--output-certificate=${certificate}'
-      - '--upload=false'
-      - "${artifact}"
+      - "${artifact}@${digest}"
       - '--yes'
     artifacts: all
     output: true
