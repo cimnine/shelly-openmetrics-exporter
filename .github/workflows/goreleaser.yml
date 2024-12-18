@@ -9,6 +9,7 @@ on:
 permissions:
   contents: write
   packages: write
+  id-token: write
   # issues: write
 
 jobs:
@@ -48,6 +49,9 @@ jobs:
           registry: ghcr.io
           username: ${{ github.actor }}
           password: ${{ secrets.GITHUB_TOKEN }}
+      -
+        name: Install Cosign
+        uses: sigstore/cosign-installer@v3
       -
         name: Run Goreleaser
         uses: goreleaser/goreleaser-action@v6

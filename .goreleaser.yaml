@@ -1,3 +1,5 @@
+version: 2
+
 project_name: shelly-openmetrics-exporter
 
 before:
@@ -15,9 +17,10 @@ builds:
       - amd64
       - arm64
       - arm
+      - riscv64
     goarm:
-      - 6
-      - 7
+      - '6'
+      - '7'
 
 gomod:
   proxy: true
@@ -80,6 +83,19 @@ dockers:
     image_templates:
       - "ghcr.io/cimnine/shelly-openmetrics-exporter:armv7-{{ .Tag }}"
       - "ghcr.io/cimnine/shelly-openmetrics-exporter:armv7-latest"
+  - goos: linux
+    goarch: riscv64
+    use: buildx
+    build_flag_templates:
+      - "--pull"
+      - "--platform=linux/riscv64"
+      - "--label=org.opencontainers.image.created={{.Date}}"
+      - "--label=org.opencontainers.image.title={{.ProjectName}}"
+      - "--label=org.opencontainers.image.revision={{.FullCommit}}"
+      - "--label=org.opencontainers.image.version={{.Version}}"
+    image_templates:
+      - "ghcr.io/cimnine/shelly-openmetrics-exporter:riscv64-{{ .Tag }}"
+      - "ghcr.io/cimnine/shelly-openmetrics-exporter:riscv64-latest"
 docker_manifests:
   - name_template: "ghcr.io/cimnine/shelly-openmetrics-exporter:latest"
     image_templates:
@@ -113,7 +129,7 @@ checksum:
   name_template: "checksums.txt"
 
 snapshot:
-  name_template: "{{ incpatch .Version }}-next"
+  version_template: "{{ incpatch .Version }}-next"
 
 changelog:
   sort: asc
@@ -121,5 +137,31 @@ changelog:
     exclude:
       - "^docs:"
       - "^test:"
+
+signs:
+  - cmd: cosign
+    signature: "${artifact}.sig"
+    certificate: "${artifact}.pem"
+    args:
+      - sign-blob
+      - '--oidc-provider=github-actions'
+      - '--output-certificate=${certificate}'
+      - '--output-signature=${signature}'
+      - '${artifact}'
+      - '--yes'
+    artifacts: all
+    output: true
+
+docker_signs:
+  - cmd: cosign
+    args:
+      - sign
+      - '--oidc-provider=github-actions'
+      - '--upload=false'
+      - "${artifact}"
+      - '--yes'
+    artifacts: all
+    output: true
+
 # yaml-language-server: $schema=https://goreleaser.com/static/schema.json
 # vim: set ts=2 sw=2 tw=0 fo=cnqoj
