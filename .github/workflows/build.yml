@@ -1,7 +1,9 @@
-name: Go
+name: Basic Build
 
 on:
   push:
+    branches:
+      - '*'
     tags-ignore:
       - '*'
   pull_request:
