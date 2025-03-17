@@ -18,6 +18,7 @@ type Metrics struct {
 	PowerFactor           *prometheus.GaugeVec
 	Total                 *prometheus.CounterVec
 	TotalReturned         *prometheus.CounterVec
+	Frequency             *prometheus.GaugeVec
 	RelativeHumidity      *prometheus.GaugeVec
 	Temperature           *prometheus.GaugeVec
 	TemperatureDevice     *prometheus.GaugeVec
@@ -133,6 +134,13 @@ func NewMetrics(reg *prometheus.Registry) *Metrics {
 			prometheus.CounterOpts{
 				Name: "shelly_total_returned_wh",
 				Help: "The total returned energy up to this instant.",
+			},
+			lineLabels,
+		),
+		Frequency: prometheus.NewGaugeVec(
+			prometheus.GaugeOpts{
+				Name: "shelly_grid_frequency",
+				Help: "Last measured network frequency.",
 			},
 			lineLabels,
 		),
@@ -295,6 +303,7 @@ func NewMetrics(reg *prometheus.Registry) *Metrics {
 		m.RelativeHumidity,
 		m.Temperature,
 		m.TemperatureDevice,
+		m.Frequency,
 		m.Voltmeter,
 		m.RelayOpen,
 		m.RelayOverpowered,
