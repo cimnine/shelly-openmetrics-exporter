@@ -59,6 +59,8 @@ func probeHandler(w http.ResponseWriter, req *http.Request) {
 	case shelly_detect.ShellyGeneration1:
 		s = shelly_v1.New(target, userAgent, username, password)
 	case shelly_detect.ShellyGeneration2:
+		fallthrough
+	case shelly_detect.ShellyGeneration3:
 		s = shelly_v2.New(target, userAgent, password)
 	default:
 		http.Error(w, fmt.Sprintf("unkown shelly generation '%d'", shellyType), http.StatusBadRequest)

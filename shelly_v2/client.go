@@ -61,6 +61,10 @@ func (s *ShellyV2) FetchStatus() error {
 	if err != nil {
 		return err
 	}
+	err = s.getPM1Status(status)
+	if err != nil {
+		return err
+	}
 
 	s.status = status
 
