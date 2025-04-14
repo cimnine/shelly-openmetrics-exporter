@@ -6,7 +6,7 @@ toolchain go1.24.2
 
 require (
 	github.com/ndecker/go-http-digest-auth-client v0.4.0
-	github.com/prometheus/client_golang v1.21.1
+	github.com/prometheus/client_golang v1.22.0
 )
 
 require (
