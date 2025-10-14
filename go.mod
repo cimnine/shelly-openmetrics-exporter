@@ -2,7 +2,7 @@ module github.com/cimnine/shelly-openmetrics-exporter
 
 go 1.23.0
 
-toolchain go1.25.0
+toolchain go1.25.3
 
 require (
 	github.com/ndecker/go-http-digest-auth-client v0.4.0
