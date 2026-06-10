@@ -1,4 +1,4 @@
-FROM alpine:3.23
+FROM alpine:3.24
 ARG TARGETPLATFORM
 ENTRYPOINT ["/shelly-openmetrics-exporter"]
 COPY $TARGETPLATFORM/shelly-openmetrics-exporter /
