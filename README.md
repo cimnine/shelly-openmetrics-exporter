@@ -9,7 +9,7 @@ Use this tool to fetch power readings from your Shellys via Prometheus (or any O
 It supports multiple power lines (like they are available on `Shelly 3EM` or `Shelly Plus 2PM`).
 
 This exporter is compatible with the _First Generation Shelly Devices API_ and the _Second Generation Shelly Devices API_.
-Authentication is not supported.
+Authentication is supported.
 
 ## Usage
 
