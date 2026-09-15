@@ -30,5 +30,5 @@ jobs:
         uses: goreleaser/goreleaser-action@v7
         with:
           distribution: goreleaser
-          version: 2.15.4
+          version: v2.18.1
           args: check
