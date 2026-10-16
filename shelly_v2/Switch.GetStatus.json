@@ -5,18 +5,28 @@
       0.0,
       0.0
     ],
-    "minute_ts": 1672814023,
-    "total": 204.452
+    "minute_ts": 1792174320,
+    "total": 1794679.757
   },
   "apower": 0.0,
-  "current": 0.163,
+  "current": 0.0,
+  "freq": 50.0,
   "id": 0,
   "output": true,
-  "pf": -0.0,
+  "pf": 0.0,
+  "ret_aenergy": {
+    "by_minute": [
+      0.0,
+      0.0,
+      0.0
+    ],
+    "minute_ts": 1792174320,
+    "total": 1771567.756
+  },
   "source": "init",
   "temperature": {
-    "tC": 42.6,
-    "tF": 108.7
+    "tC": 56.0,
+    "tF": 132.8
   },
-  "voltage": 230.1
+  "voltage": 230.4
 }

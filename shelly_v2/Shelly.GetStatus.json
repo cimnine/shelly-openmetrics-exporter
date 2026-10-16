@@ -21,63 +21,89 @@
         0.0,
         0.0
       ],
-      "minute_ts": 1672814679,
-      "total": 204.452
+      "minute_ts": 1792174320,
+      "total": 1794679.757
     },
     "apower": 0.0,
-    "current": 0.162,
+    "current": 0.0,
+    "freq": 50.0,
     "id": 0,
     "output": true,
-    "pf": -0.0,
+    "pf": 0.0,
+    "ret_aenergy": {
+      "by_minute": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "minute_ts": 1792174320,
+      "total": 1771567.756
+    },
     "source": "init",
     "temperature": {
-      "tC": 43.3,
-      "tF": 109.9
+      "tC": 56.0,
+      "tF": 132.8
     },
-    "voltage": 229.5
+    "voltage": 230.4
   },
   "switch:1": {
     "aenergy": {
       "by_minute": [
-        76.27,
-        114.557,
-        114.602
+        115.392,
+        115.438,
+        115.346
       ],
-      "minute_ts": 1672814679,
-      "total": 277.009
+      "minute_ts": 1792174320,
+      "total": 201619.597
     },
-    "apower": 6.5,
-    "current": 0.353,
+    "apower": 6.6,
+    "current": 0.295,
+    "freq": 50.0,
     "id": 1,
     "output": true,
-    "pf": -0.08,
+    "pf": 0.1,
+    "ret_aenergy": {
+      "by_minute": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "minute_ts": 1792174320,
+      "total": 0.0
+    },
     "source": "init",
     "temperature": {
-      "tC": 43.3,
-      "tF": 109.9
+      "tC": 56.0,
+      "tF": 132.8
     },
-    "voltage": 229.5
+    "voltage": 230.5
   },
   "sys": {
     "available_updates": {},
-    "cfg_rev": 29,
+    "btrelay_rev": 0,
+    "cfg_rev": 49,
     "fs_free": 106496,
-    "fs_size": 458752,
+    "fs_size": 393216,
     "kvs_rev": 4,
-    "mac": "11111CED111",
-    "ram_free": 155764,
-    "ram_size": 233564,
+    "last_sync_ts": 1792173515,
+    "mac": "020000000003",
+    "ram_free": 127156,
+    "ram_min_free": 99488,
+    "ram_size": 249400,
+    "reset_reason": 1,
     "restart_required": false,
     "schedule_rev": 0,
-    "time": "07:44",
-    "unixtime": 1672814681,
-    "uptime": 39299,
+    "time": "20:12",
+    "unixtime": 1792174342,
+    "uptime": 14730378,
+    "utc_offset": 0,
     "webhook_rev": 0
   },
   "wifi": {
-    "rssi": -56,
-    "ssid": "Wifi 1",
-    "sta_ip": "192.168.1.2",
+    "bssid": "02:00:00:00:00:04",
+    "rssi": -64,
+    "ssid": "Example WiFi",
+    "sta_ip": "192.0.2.171",
     "status": "got ip"
   },
   "ws": {

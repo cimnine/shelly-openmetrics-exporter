@@ -1,9 +1,9 @@
 {
   "auth": false,
   "discoverable": false,
-  "fw": "20221027-110030/v1.12.1-ga9117d3",
+  "fw": "20230913-114244/v1.14.0-gcb84623",
   "longid": 1,
-  "mac": "111CAB11A11E",
+  "mac": "020000000001",
   "num_emeters": 3,
   "num_meters": 0,
   "num_outputs": 1,

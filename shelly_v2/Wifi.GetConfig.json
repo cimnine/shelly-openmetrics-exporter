@@ -5,7 +5,7 @@
     "range_extender": {
       "enable": false
     },
-    "ssid": "ShellyPlus2PM-11111CED111"
+    "ssid": "ShellyPlus2PM-020000000003"
   },
   "roam": {
     "interval": 60,
@@ -19,7 +19,7 @@
     "is_open": false,
     "nameserver": null,
     "netmask": null,
-    "ssid": "Wifi 1"
+    "ssid": "Example WiFi"
   },
   "sta1": {
     "enable": true,
@@ -29,6 +29,6 @@
     "is_open": false,
     "nameserver": null,
     "netmask": null,
-    "ssid": "Wifi 2"
+    "ssid": "Example WiFi 2"
   }
 }

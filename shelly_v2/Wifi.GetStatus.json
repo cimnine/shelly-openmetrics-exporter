@@ -1,6 +1,7 @@
 {
-  "rssi": -56,
-  "ssid": "Fascht e Familie",
-  "sta_ip": "10.10.11.171",
+  "bssid": "02:00:00:00:00:04",
+  "rssi": -64,
+  "ssid": "Example WiFi",
+  "sta_ip": "192.0.2.171",
   "status": "got ip"
 }

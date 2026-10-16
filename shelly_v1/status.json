@@ -2,7 +2,7 @@
   "actions_stats": {
     "skipped": 0
   },
-  "cfg_changed_cnt": 0,
+  "cfg_changed_cnt": 1,
   "cloud": {
     "connected": true,
     "enabled": true
@@ -11,53 +11,53 @@
   "emeter_n": {
     "current": 0.0,
     "is_valid": false,
-    "ixsum": 0.67,
+    "ixsum": 0.76,
     "mismatch": false
   },
   "emeters": [
     {
-      "current": 0.72,
+      "current": 0.96,
       "is_valid": true,
-      "pf": 0.69,
-      "power": 113.63,
-      "total": 191131.6,
+      "pf": 0.66,
+      "power": 146.78,
+      "total": 383339.6,
       "total_returned": 0.0,
-      "voltage": 230.09
+      "voltage": 231.6
     },
     {
-      "current": 0.26,
+      "current": 0.46,
       "is_valid": true,
-      "pf": 0.64,
-      "power": 38.24,
-      "total": 103767.7,
+      "pf": 0.7,
+      "power": 74.46,
+      "total": 441525.7,
       "total_returned": 0.0,
-      "voltage": 230.75
+      "voltage": 231.41
     },
     {
-      "current": 0.27,
+      "current": 0.35,
       "is_valid": true,
-      "pf": 0.5,
-      "power": 30.59,
-      "total": 128226.6,
+      "pf": 0.51,
+      "power": 41.1,
+      "total": 455871.9,
       "total_returned": 0.0,
-      "voltage": 230.74
+      "voltage": 232.5
     }
   ],
-  "fs_free": 154365,
+  "fs_free": 154114,
   "fs_mounted": true,
   "fs_size": 233681,
   "has_update": false,
-  "mac": "111CAB11A11E",
+  "mac": "020000000001",
   "mqtt": {
     "connected": false
   },
-  "ram_free": 31884,
-  "ram_total": 49928,
+  "ram_free": 31088,
+  "ram_total": 49920,
   "relays": [
     {
       "has_timer": false,
       "is_valid": true,
-      "ison": false,
+      "ison": true,
       "overpower": false,
       "source": "input",
       "timer_duration": 0,
@@ -65,30 +65,23 @@
       "timer_started": 0
     }
   ],
-  "serial": 2414,
-  "time": "07:32",
-  "total_power": 182.46,
-  "temperature": 29.35,
-  "overtemperature": false,
-  "tmp": {
-    "tC": 29.35,
-    "tF": 84.83,
-    "is_valid": true
-  },
-  "temperature_status":"Normal",
-  "unixtime": 1672813941,
+  "serial": 21697,
+  "time": "20:12",
+  "total_power": 262.34,
+  "unixtime": 1792174344,
   "update": {
+    "beta_version": "20231107-165007/v1.14.1-rc1-g0617c15",
     "has_update": false,
-    "new_version": "20221027-110030/v1.12.1-ga9117d3",
-    "old_version": "20221027-110030/v1.12.1-ga9117d3",
+    "new_version": "20230913-114244/v1.14.0-gcb84623",
+    "old_version": "20230913-114244/v1.14.0-gcb84623",
     "status": "idle"
   },
-  "uptime": 141090,
+  "uptime": 19000531,
   "v_data": 1,
   "wifi_sta": {
     "connected": true,
-    "ip": "192.168.1.1",
-    "rssi": -56,
-    "ssid": "Wifi Name"
+    "ip": "192.0.2.155",
+    "rssi": -58,
+    "ssid": "Example WiFi"
   }
 }

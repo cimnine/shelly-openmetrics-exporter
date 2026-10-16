@@ -1,0 +1,87 @@
+{
+  "actions_stats": {
+    "skipped": 0
+  },
+  "cfg_changed_cnt": 0,
+  "cloud": {
+    "connected": true,
+    "enabled": true
+  },
+  "ct_calst": 0,
+  "emeter_n": {
+    "current": 0.0,
+    "is_valid": false,
+    "ixsum": 1.94,
+    "mismatch": false
+  },
+  "emeters": [
+    {
+      "current": 1.02,
+      "is_valid": true,
+      "pf": 0.52,
+      "power": 121.15,
+      "total": 6125853.8,
+      "total_returned": 0.0,
+      "voltage": 231.92
+    },
+    {
+      "current": 2.27,
+      "is_valid": true,
+      "pf": 0.64,
+      "power": 330.98,
+      "total": 12367543.2,
+      "total_returned": 219567.4,
+      "voltage": 230.93
+    },
+    {
+      "current": 0.22,
+      "is_valid": true,
+      "pf": 0.95,
+      "power": 47.93,
+      "total": 699745.3,
+      "total_returned": 3.6,
+      "voltage": 233.16
+    }
+  ],
+  "fs_free": 154114,
+  "fs_mounted": true,
+  "fs_size": 233681,
+  "has_update": false,
+  "mac": "020000000002",
+  "mqtt": {
+    "connected": false
+  },
+  "ram_free": 31152,
+  "ram_total": 49920,
+  "relays": [
+    {
+      "has_timer": false,
+      "is_valid": true,
+      "ison": false,
+      "overpower": false,
+      "source": "input",
+      "timer_duration": 0,
+      "timer_remaining": 0,
+      "timer_started": 0
+    }
+  ],
+  "serial": 12156,
+  "time": "20:12",
+  "total_power": 500.06,
+  "unixtime": 1792174324,
+  "update": {
+    "beta_version": "20231107-165007/v1.14.1-rc1-g0617c15",
+    "has_update": false,
+    "new_version": "20230913-114244/v1.14.0-gcb84623",
+    "old_version": "20230913-114244/v1.14.0-gcb84623",
+    "status": "idle"
+  },
+  "uptime": 13566281,
+  "v_data": 1,
+  "wifi_sta": {
+    "connected": true,
+    "ip": "192.0.2.154",
+    "rssi": -58,
+    "ssid": "Example WiFi"
+  }
+}

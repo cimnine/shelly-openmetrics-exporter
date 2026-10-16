@@ -1,0 +1,149 @@
+{
+  "actions": {
+    "active": false,
+    "names": [
+      "out_on_url",
+      "out_off_url",
+      "over_power_url",
+      "under_power_url",
+      "over_power_url",
+      "under_power_url",
+      "over_power_url",
+      "under_power_url",
+      "over_power_url",
+      "under_power_url",
+      "n_mismatch_url"
+    ]
+  },
+  "allow_cross_origin": false,
+  "ap_roaming": {
+    "enabled": true,
+    "threshold": -60
+  },
+  "build_info": {
+    "build_id": "20230913-114244/v1.14.0-gcb84623",
+    "build_timestamp": "2023-09-13T11:42:44Z",
+    "build_version": "1.0"
+  },
+  "cf_output": 100,
+  "cloud": {
+    "connected": true,
+    "enabled": true
+  },
+  "coiot": {
+    "enabled": true,
+    "peer": "",
+    "update_period": 15
+  },
+  "debug_enable": false,
+  "device": {
+    "hostname": "shellyem3-020000000002",
+    "mac": "020000000002",
+    "num_emeters": 3,
+    "num_meters": 0,
+    "num_outputs": 1,
+    "report_period": 1,
+    "type": "SHEM-3"
+  },
+  "discoverable": false,
+  "eco_mode_enabled": false,
+  "emeter_n": {
+    "mismatch_threshold": 1.0,
+    "range_extender": 1
+  },
+  "emeters": [
+    {
+      "appliance_type": "General",
+      "max_power": 0,
+      "name": "Channel 1",
+      "range_extender": 1
+    },
+    {
+      "appliance_type": "General",
+      "max_power": 0,
+      "name": "Channel 2",
+      "range_extender": 1
+    },
+    {
+      "appliance_type": "General",
+      "max_power": 0,
+      "name": "Channel 3",
+      "range_extender": 1
+    }
+  ],
+  "fw": "20230913-114244/v1.14.0-gcb84623",
+  "hwinfo": {
+    "batch_id": 0,
+    "hw_revision": "dev-prototype"
+  },
+  "lat": 1.0,
+  "led_status_disable": false,
+  "lng": 2.0,
+  "login": {
+    "enabled": false,
+    "unprotected": false,
+    "username": "admin"
+  },
+  "mqtt": {
+    "clean_session": true,
+    "enable": false,
+    "id": "shellyem3-020000000002",
+    "keep_alive": 60,
+    "max_qos": 0,
+    "reconnect_timeout_max": 60.0,
+    "reconnect_timeout_min": 2.0,
+    "retain": false,
+    "server": "192.0.2.1:1883",
+    "update_period": 30,
+    "user": ""
+  },
+  "name": "Power meter 2",
+  "pin_code": "",
+  "pon_wifi_reset": false,
+  "relays": [
+    {
+      "auto_off": 0.0,
+      "auto_on": 0.0,
+      "default_state": "off",
+      "has_timer": false,
+      "ison": false,
+      "name": null,
+      "schedule": false,
+      "schedule_rules": []
+    }
+  ],
+  "sntp": {
+    "enabled": true,
+    "server": "time.example.org"
+  },
+  "time": "20:12",
+  "timezone": "Etc/UTC",
+  "tz_dst": false,
+  "tz_dst_auto": true,
+  "tz_utc_offset": 0,
+  "tzautodetect": true,
+  "unixtime": 1792174343,
+  "wifi_ap": {
+    "enabled": false,
+    "key": "",
+    "ssid": "shellyem3-020000000002"
+  },
+  "wifi_sta": {
+    "dns": null,
+    "enabled": true,
+    "gw": null,
+    "ip": null,
+    "ipv4_method": "dhcp",
+    "mask": null,
+    "ssid": "Example WiFi"
+  },
+  "wifi_sta1": {
+    "dns": null,
+    "enabled": true,
+    "gw": null,
+    "ip": null,
+    "ipv4_method": "dhcp",
+    "mask": null,
+    "ssid": "Example WiFi 2"
+  }
+}

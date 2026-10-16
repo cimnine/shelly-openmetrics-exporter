@@ -18,9 +18,9 @@ func TestComponentFixtures(t *testing.T) {
 		indexed bool
 	}{
 		{"Switch.GetStatus", (*ShellyV2).getSwitchStatus, Status{SwitchesStatus: []SwitchGetStatusResponse{{
-			Source: "init", Output: true, Current: 0.163, Voltage: 230.1,
-			ActiveEnergy: EnergyCounter{Total: 204.452, ByMinute: []float64{0, 0, 0}, MinuteTs: 1672814023},
-			Temperature:  &Temperature{Celsius: 42.6, Fahrenheit: 108.7},
+			Source: "init", Output: true, Voltage: 230.4,
+			ActiveEnergy: EnergyCounter{Total: 1794679.757, ByMinute: []float64{0, 0, 0}, MinuteTs: 1792174320},
+			Temperature:  &Temperature{Celsius: 56, Fahrenheit: 132.8},
 		}}}, true},
 		{"Switch.GetConfig", (*ShellyV2).getSwitchConfig, Status{SwitchesConfig: []SwitchGetConfigResponse{{
 			AutoOffDelay: 60, AutoOnDelay: 60, InMode: "detached", InitialState: "on", Name: "Channel 1",
@@ -28,11 +28,11 @@ func TestComponentFixtures(t *testing.T) {
 		}}}, true},
 		{"Input.GetStatus", (*ShellyV2).getInputStatus, Status{InputStatus: []InputGetStatusResponse{{}}}, true},
 		{"Wifi.GetStatus", (*ShellyV2).getWifiStatus, Status{WifiStatus: &WifiGetStatusResponse{
-			RSSI: -56, SSID: "Fascht e Familie", IP: "10.10.11.171", Status: "got ip",
+			RSSI: -64, SSID: "Example WiFi", IP: "192.0.2.171", Status: "got ip",
 		}}, false},
 		{"Cloud.GetStatus", (*ShellyV2).getCloudStatus, Status{CloudStatus: &CloudGetStatusResponse{Connected: true}}, false},
 		{"Cloud.GetConfig", (*ShellyV2).getCloudConfig, Status{CloudConfig: &CloudGetConfigResponse{
-			Enable: true, Server: "shelly-0-eu.shelly.cloud:6022/jrpc",
+			Enable: true, Server: "shelly-50-eu.shelly.cloud:6022/jrpc",
 		}}, false},
 		{"Voltmeter.GetStatus", (*ShellyV2).getVoltmeterStatus, Status{VoltmeterStatus: []VoltmeterGetStatusResponse{{Voltage: 3.5}}}, true},
 		{"Temperature.GetStatus", (*ShellyV2).getTemperatureStatus, Status{TemperatureStatus: []TemperatureGetStatusResponse{{Celsius: 24.4, Fahrenheit: 75.9}}}, true},
@@ -132,24 +132,24 @@ func TestAggregateFixtures(t *testing.T) {
 		components map[string]any
 	}{
 		{"Shelly.GetConfig.json", map[string]any{
-			"cloud":    CloudGetConfigResponse{Enable: true, Server: "shelly-0-eu.shelly.cloud:6022/jrpc"},
-			"switch:0": SwitchGetConfigResponse{AutoOffDelay: 60, AutoOnDelay: 60, CurrentLimit: 10, InMode: "detached", InitialState: "on", Name: "switch1", PowerLimit: 700, VoltageLimit: 280},
-			"switch:1": SwitchGetConfigResponse{Id: 1, AutoOffDelay: 60, AutoOnDelay: 60, CurrentLimit: 10, InMode: "detached", InitialState: "on", Name: "switch2", PowerLimit: 2800, VoltageLimit: 280},
+			"cloud":    CloudGetConfigResponse{Enable: true, Server: "shelly-50-eu.shelly.cloud:6022/jrpc"},
+			"switch:0": SwitchGetConfigResponse{AutoOffDelay: 60, AutoOnDelay: 60, CurrentLimit: 10, InMode: "detached", InitialState: "on", Name: "Channel 1", PowerLimit: 700, VoltageLimit: 280},
+			"switch:1": SwitchGetConfigResponse{Id: 1, AutoOffDelay: 60, AutoOnDelay: 60, CurrentLimit: 10, InMode: "detached", InitialState: "on", Name: "Channel 2", PowerLimit: 2800, VoltageLimit: 280},
 		}},
 		{"Shelly.GetStatus.json", map[string]any{
 			"cloud":   CloudGetStatusResponse{Connected: true},
 			"input:0": InputGetStatusResponse{},
 			"input:1": InputGetStatusResponse{Id: 1},
-			"wifi":    WifiGetStatusResponse{RSSI: -56, SSID: "Wifi 1", IP: "192.168.1.2", Status: "got ip"},
+			"wifi":    WifiGetStatusResponse{RSSI: -64, SSID: "Example WiFi", IP: "192.0.2.171", Status: "got ip"},
 			"switch:0": SwitchGetStatusResponse{
-				Source: "init", Output: true, Current: 0.162, Voltage: 229.5,
-				ActiveEnergy: EnergyCounter{Total: 204.452, ByMinute: []float64{0, 0, 0}, MinuteTs: 1672814679},
-				Temperature:  &Temperature{Celsius: 43.3, Fahrenheit: 109.9},
+				Source: "init", Output: true, Voltage: 230.4,
+				ActiveEnergy: EnergyCounter{Total: 1794679.757, ByMinute: []float64{0, 0, 0}, MinuteTs: 1792174320},
+				Temperature:  &Temperature{Celsius: 56, Fahrenheit: 132.8},
 			},
 			"switch:1": SwitchGetStatusResponse{
-				Id: 1, Source: "init", Output: true, Current: 0.353, Voltage: 229.5, Power: 6.5, PowerFactor: -0.08,
-				ActiveEnergy: EnergyCounter{Total: 277.009, ByMinute: []float64{76.27, 114.557, 114.602}, MinuteTs: 1672814679},
-				Temperature:  &Temperature{Celsius: 43.3, Fahrenheit: 109.9},
+				Id: 1, Source: "init", Output: true, Current: 0.295, Voltage: 230.5, Power: 6.6, PowerFactor: 0.10,
+				ActiveEnergy: EnergyCounter{Total: 201619.597, ByMinute: []float64{115.392, 115.438, 115.346}, MinuteTs: 1792174320},
+				Temperature:  &Temperature{Celsius: 56, Fahrenheit: 132.8},
 			},
 		}},
 	}

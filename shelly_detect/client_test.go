@@ -17,18 +17,18 @@ func TestDetectionFixtures(t *testing.T) {
 		want       Shelly
 	}{
 		{"shelly_v1.json", ShellyGeneration1, Shelly{
-			Type: "SHEM-3", Mac: "111CAB11A11E", Fw: "20221027-110030/v1.12.1-ga9117d3",
+			Type: "SHEM-3", Mac: "020000000001", Fw: "20230913-114244/v1.14.0-gcb84623",
 			LongID: 1, NumEmeters: 3, NumOutputs: 1, ReportPeriod: 1,
 		}},
 		{"shelly_v2.json", ShellyGeneration2, Shelly{
-			Id: "shellyplus2pm-11111CED111", Mac: "11111CED111", Model: "SNSW-102P16EU", Gen: 2,
-			FwId: "20221206-141957/0.12.0-gafc2404", Ver: "0.12.0", App: "Plus2PM",
-			Name: "shellyplus2pm-11111CED111", Profile: "switch",
+			Id: "shellyplus2pm-020000000003", Mac: "020000000003", Model: "SNSW-102P16EU", Gen: 2,
+			FwId: "20260311-095847/1.7.5-g9979d16", Ver: "1.7.5", App: "Plus2PM",
+			Name: "Switch device", Profile: "switch",
 		}},
 		{"../shelly_v2/Shelly.GetDeviceInfo.json", ShellyGeneration2, Shelly{
-			Id: "shellyplus2pm-11111CED111", Mac: "11111CED111", Model: "SNSW-102P16EU", Gen: 2,
-			FwId: "20221206-141957/0.12.0-gafc2404", Ver: "0.12.0", App: "Plus2PM",
-			Name: "shellyplus2pm-11111CED111", Profile: "switch",
+			Id: "shellyplus2pm-020000000003", Mac: "020000000003", Model: "SNSW-102P16EU", Gen: 2,
+			FwId: "20260311-095847/1.7.5-g9979d16", Ver: "1.7.5", App: "Plus2PM",
+			Name: "Switch device", Profile: "switch",
 		}},
 	}
 	for _, tt := range tests {

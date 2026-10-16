@@ -2,14 +2,15 @@
   "ble": {
     "enable": false,
     "rpc": {
-      "enable": true
+      "enable": false
     }
   },
   "cloud": {
     "enable": true,
-    "server": "shelly-0-eu.shelly.cloud:6022/jrpc"
+    "server": "shelly-50-eu.shelly.cloud:6022/jrpc"
   },
   "input:0": {
+    "enable": true,
     "factory_reset": true,
     "id": 0,
     "invert": false,
@@ -17,6 +18,7 @@
     "type": "switch"
   },
   "input:1": {
+    "enable": true,
     "factory_reset": true,
     "id": 1,
     "invert": false,
@@ -24,12 +26,15 @@
     "type": "switch"
   },
   "mqtt": {
-    "client_id": "shellyplus2pm-11111CED111",
+    "client_id": "shellyplus2pm-020000000003",
     "enable": false,
+    "enable_control": true,
+    "enable_rpc": true,
     "rpc_ntf": true,
     "server": null,
+    "ssl_ca": null,
     "status_ntf": false,
-    "topic_prefix": "shellyplus2pm-11111CED111",
+    "topic_prefix": "shellyplus2pm-020000000003",
     "use_client_cert": false,
     "user": null
   },
@@ -38,12 +43,16 @@
     "auto_off_delay": 60.0,
     "auto_on": false,
     "auto_on_delay": 60.0,
+    "autorecover_voltage_errors": false,
     "current_limit": 10.0,
     "id": 0,
+    "in_locked": false,
     "in_mode": "detached",
     "initial_state": "on",
-    "name": "switch1",
+    "name": "Channel 1",
     "power_limit": 700,
+    "reverse": false,
+    "undervoltage_limit": 0,
     "voltage_limit": 280
   },
   "switch:1": {
@@ -51,17 +60,23 @@
     "auto_off_delay": 60.0,
     "auto_on": false,
     "auto_on_delay": 60.0,
+    "autorecover_voltage_errors": false,
     "current_limit": 10.0,
     "id": 1,
+    "in_locked": false,
     "in_mode": "detached",
     "initial_state": "on",
-    "name": "switch2",
+    "name": "Channel 2",
     "power_limit": 2800,
+    "reverse": false,
+    "undervoltage_limit": 0,
     "voltage_limit": 280
   },
   "sys": {
-    "cfg_rev": 29,
+    "cfg_rev": 49,
     "debug": {
+      "file_level": null,
+      "level": 2,
       "mqtt": {
         "enable": false
       },
@@ -76,22 +91,22 @@
       "addon_type": "sensor",
       "discoverable": true,
       "eco_mode": false,
-      "fw_id": "20221206-141957/0.12.0-gafc2404",
-      "mac": "11111CED111",
-      "name": "shellyplus2pm-11111CED111",
+      "fw_id": "20260311-095847/1.7.5-g9979d16",
+      "mac": "020000000003",
+      "name": "Switch device",
       "profile": "switch"
     },
     "location": {
-      "lat": 0.49521,
-      "lon": 0.71693,
-      "tz": "Europe/Zurich"
+      "lat": 1.0,
+      "lon": 2.0,
+      "tz": "Etc/UTC"
     },
     "rpc_udp": {
       "dst_addr": null,
       "listen_port": null
     },
     "sntp": {
-      "server": "time.google.com"
+      "server": "time.example.org"
     },
     "ui_data": {
       "consumption_types": [
@@ -107,7 +122,7 @@
       "range_extender": {
         "enable": false
       },
-      "ssid": "ShellyPlus2PM-11111CED111"
+      "ssid": "ShellyPlus2PM-020000000003"
     },
     "roam": {
       "interval": 60,
@@ -121,7 +136,7 @@
       "is_open": false,
       "nameserver": null,
       "netmask": null,
-      "ssid": "Wifi 1"
+      "ssid": "Example WiFi"
     },
     "sta1": {
       "enable": true,
@@ -131,7 +146,7 @@
       "is_open": false,
       "nameserver": null,
       "netmask": null,
-      "ssid": "Wifi 2"
+      "ssid": "Example WiFi 2"
     }
   },
   "ws": {
