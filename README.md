@@ -26,7 +26,7 @@ For backward compatibility, the query parameters `username` and `password` will 
 - [x] detect shelly generation
 - [x] temperature
 - [x] goreleaser
-- [ ] tests
+- [x] tests
 - [x] rename shelly-openmetrics-exporter
 - [x] authentication
 
